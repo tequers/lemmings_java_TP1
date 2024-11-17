@@ -17,7 +17,7 @@ public class LemmingRoleFactory {
 	
 	public static LemmingRole parse(String input) {
 		for (LemmingRole rol: availableRoles) {
-			if (LemmingRole.parse(input, rol) != null) {
+			if (rol.parse(input) != null) {
 				return rol;
 			}
 		}
@@ -27,7 +27,7 @@ public class LemmingRoleFactory {
 	public static String helpText() {
 		StringBuilder roles = new StringBuilder();
 		for (LemmingRole rol: availableRoles) {
-			roles.append(LemmingRole.helpText(rol));
+			roles.append(rol.helpText());
 		}
 		return roles.toString(); 
 	}

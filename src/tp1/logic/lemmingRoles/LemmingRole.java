@@ -17,27 +17,13 @@ public interface LemmingRole {
 		public String getHelp();
 		public String getHelpName();
 		
-		public static LemmingRole parse(String input, LemmingRole rol) {
-			if (LemmingRole.matchCommandName(input, rol)) {
-				return rol;
-			} 
-			return null;
-		};
-		
-		public static String helpText(LemmingRole rol){
-			return Messages.LINE_TAB.formatted(
-					"\t  " + Messages.COMMAND_HELP_TEXT.formatted(rol.getHelpName(), rol.getHelp()));
-		}
-		
-		public static boolean matchCommandName(String input, LemmingRole role) {
-			return role.getSymbol().equalsIgnoreCase(input) || 
-					role.getName().equalsIgnoreCase(input);
-		}
+	
 		
 		public boolean receiveInteraction(GameItem other, Lemming lemming);
 		public boolean interactWith(Lemming receiver, Lemming lemming);
 		public boolean interactWith(Wall wall, Lemming lemming);
 		public boolean interactWith(ExitDoor door, Lemming lemming);
-		
+		public LemmingRole parse(String input);
+		public  String helpText();
 }
  

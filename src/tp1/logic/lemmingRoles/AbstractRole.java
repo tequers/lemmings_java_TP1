@@ -62,4 +62,20 @@ public abstract class AbstractRole implements LemmingRole{
 		return this.getClass() == obj.getClass();
 	}
 	
+	public LemmingRole parse(String input) {
+		if (this.matchCommandName(input)) {
+			return this;
+		} 
+		return null;
+	};
+	
+	public  String helpText(){
+		return Messages.LINE_TAB.formatted(
+				"\t  " + Messages.COMMAND_HELP_TEXT.formatted(this.getHelpName(), this.getHelp()));
+	}
+	
+	private boolean matchCommandName(String input) {
+		return this.getSymbol().equalsIgnoreCase(input) || 
+				this.getName().equalsIgnoreCase(input);
+	}
 }
