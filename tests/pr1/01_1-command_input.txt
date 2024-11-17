@@ -1,0 +1,18 @@
+h
+help
+help con argumentosIncorrectos
+noExiste
+none
+r
+reset
+none
+r 134
+none
+r 230
+
+reset
+help
+n
+e
+exit
+
