@@ -46,8 +46,8 @@ public class DownCaverRole extends AbstractRole {
 		if (wall.isInPosition(lemming.nextPos(Direction.DOWN))) {
 			wall.setLife(false);
 			return true;
-		}
-		return false;
+		}else
+			return false;
 	}
 	
 }

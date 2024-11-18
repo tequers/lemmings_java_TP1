@@ -64,14 +64,14 @@ public class GameObjectContainer {
 	}
 	
 	//Interactions
-		public boolean receiveInteractionsFrom(GameItem obj) {
-			for (GameItem gi: objects) {
-				if (gi.receiveInteraction(obj)) {
-					return true;
-				}
+	public boolean receiveInteractionsFrom(GameItem obj) {
+		for (GameItem gi: objects) {
+			if (gi.receiveInteraction(obj)) {
+				return true;
 			}
-			return false;
 		}
+		return false;
+	}
 		
 	//Getters
 	public int getLemmingsInBoard() {
