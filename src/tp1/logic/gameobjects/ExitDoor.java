@@ -10,8 +10,10 @@ public class ExitDoor extends GameObject {
 		super(game, pos);
 	}
 	
+	@Override
 	public void update() {};
 	
+	@Override
 	public String getIcon() {
 		return Messages.EXIT_DOOR;
 	}
@@ -21,6 +23,7 @@ public class ExitDoor extends GameObject {
 		return false;
 	}
 	
+	@Override
 	public boolean receiveInteraction(GameItem other) {
 		return other.interactWith(this);
 	}

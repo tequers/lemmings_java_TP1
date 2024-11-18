@@ -51,6 +51,7 @@ public abstract class GameObject implements GameItem {
 	}
 	
 	//Other methods
+	//TODO: comprobar si hay algún método que hay que meter en el GameItem
 	public Position getPos() {
 		return this.pos;
 	}
