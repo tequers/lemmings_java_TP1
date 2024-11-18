@@ -145,7 +145,7 @@ public class Lemming extends GameObject {
 	
 	@Override
     public boolean interactWith(ExitDoor obj){
-    	if (this.isInPosition(obj.getPos())) {
+    	if (obj.isInPosition(this.pos)) {
     		return true;
     	} else return false;
     	
