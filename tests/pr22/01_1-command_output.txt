@@ -23,7 +23,7 @@ Lemmings exit door: 0 ┃2
 Command > [DEBUG] Executing: h
 
 Available commands:
-   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROL
+   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
    	  [D]own [C]aver: Lemming caves downwards
    	  [P]arachuter: Lemming falls with a parachute
    	  [W]alker: Lemming that walks
@@ -35,7 +35,7 @@ Available commands:
 Command > [DEBUG] Executing: help
 
 Available commands:
-   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROL
+   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
    	  [D]own [C]aver: Lemming caves downwards
    	  [P]arachuter: Lemming falls with a parachute
    	  [W]alker: Lemming that walks
@@ -191,7 +191,7 @@ Lemmings exit door: 0 ┃2
 Command > [DEBUG] Executing: heLP
 
 Available commands:
-   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROL
+   [s]et[R]ole ROLE ROW COL: sets the lemming in position (ROW,COL) to role ROLE
    	  [D]own [C]aver: Lemming caves downwards
    	  [P]arachuter: Lemming falls with a parachute
    	  [W]alker: Lemming that walks

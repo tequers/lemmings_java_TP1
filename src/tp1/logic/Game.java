@@ -137,9 +137,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	@Override
 	public boolean isSolid(Position pos) {	
-		if (this.dentroDelMapa(pos)) {
-			return this.container.isSolid(pos) ;
-		} else return false;
+		return this.dentroDelMapa(pos) && this.container.isSolid(pos);
 	}
 	
 	@Override
@@ -154,13 +152,6 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	public boolean receiveInteractionsFrom(GameItem obj) {
 		return this.container.receiveInteractionsFrom(obj);
 	}
-	
-	
-// Other methods
-	// TODO you should write a toString method to return 
-	//the string that represents the object status
-	// @Override
-	// public String toString()
 	
 	//Initialization of levels
 	public void init(int nLevel) {
