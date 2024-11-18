@@ -25,7 +25,7 @@ public class Lemming extends GameObject {
 	//Movement
 	public Position nextPos(Direction dir) {
 		return new Position(dir.getX() + this.pos.getCol(), 
-				dir.getY()+this.pos.getRow());
+				dir.getY() + this.pos.getRow());
 	}
 	
 	public void walk() {
@@ -139,9 +139,7 @@ public class Lemming extends GameObject {
 	
 	@Override
     public boolean interactWith(ExitDoor obj){
-    	if (obj.isInPosition(this.pos)) {
-    		return true;
-    	} else return false;
+    	return obj.isInPosition(this.pos);
     }
     
 }
