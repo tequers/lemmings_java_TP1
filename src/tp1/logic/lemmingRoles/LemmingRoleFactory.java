@@ -9,7 +9,6 @@ import tp1.view.GameView;
 public class LemmingRoleFactory {
 	
 	private static final List<LemmingRole> availableRoles = Arrays.asList(
-			
 			new DownCaverRole(),
 			new ParachuterRole(),
 			new WalkerRole()

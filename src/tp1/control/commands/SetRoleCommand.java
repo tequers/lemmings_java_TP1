@@ -76,9 +76,9 @@ public class SetRoleCommand extends Command{
 	}
 	
 	private Position posIn(String row, int col) {
-			if (rowIsValid(row) && colIsValid(col)) {
-				return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
-			}
+		if (rowIsValid(row) && colIsValid(col)) {
+			return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
+		}
 		return null;
 	}
 	
