@@ -21,14 +21,14 @@ public class SetRoleCommand extends Command{
 		super(NAME,SHORTCUT,DETAILS,HELP);
 	}
 	
+	//Command methods
 	@Override
 	public void execute(GameModel game, GameView view) {
 		String row = this.roleInput[2];
 		int col = Integer.valueOf(this.roleInput[3]);  
-		Position pos = posIn(row, col);
+		Position pos = posIn(row, col);//Devuelva null si no existe la posición,y pos(row,col) si existe
 		
 		if (pos != null) { //Comprobamos si la posición es válida
-			
 			LemmingRole role = LemmingRoleFactory.parse(this.roleInput[1]) ;
 			if (role != null) { //Comprobamos si el rol es valido
 				if (game.setRole(pos, role)) { //Comprobamos si se ha podido asginar el role a algún lemming en la pos
@@ -41,6 +41,7 @@ public class SetRoleCommand extends Command{
 		} else view.showError(Messages.SET_ROLE_COMMAND_INCORRECT_PARAMETERS);
 	}
 	
+	@Override
 	public String helpText(){
 		StringBuilder output = new StringBuilder();
 		output.append(super.helpText());
@@ -48,29 +49,7 @@ public class SetRoleCommand extends Command{
 		return output.toString();
 	}
 	
-	private boolean IsValid(String letter) {
-		if (letter.length() != 1) {
-            return false;
-        }
-		char ch = letter.toUpperCase().charAt(0);
-		return ch >= 'A' && ch <= 'J';
-	}
-	
-	private int letterToIndex(char letter) {
-		return letter - 'A'; // A -> 0, B -> 1 ...
-	}
-	
-	private boolean IsValid(int col) {
-		return col >= 1 && col <= Game.DIM_X;
-	}
-	
-	private Position posIn(String row, int col) {
-			if (IsValid(row) && IsValid(col)) {
-				return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
-			}
-		return null;
-	}
-	
+	@Override
 	public  Command parse(String[] commandWords) {
 		if (this.matchCommandName(commandWords[0])) {
 			this.roleInput = commandWords;
@@ -78,5 +57,30 @@ public class SetRoleCommand extends Command{
 		} else return null;
 		
 	}
+	
+	//Other methods
+	private boolean rowIsValid(String letter) {
+		if (letter.length() != 1) {
+            return false;
+        }
+		char ch = letter.toUpperCase().charAt(0);
+		return ch >= 'A' && ch <= 'J';
+	}
+	
+	private boolean colIsValid(int col) {
+		return col >= 1 && col <= Game.DIM_X;
+	}
+	
+	private int letterToIndex(char letter) {
+		return letter - 'A'; // A -> 0, B -> 1 ...
+	}
+	
+	private Position posIn(String row, int col) {
+			if (rowIsValid(row) && colIsValid(col)) {
+				return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
+			}
+		return null;
+	}
+	
 	
 }

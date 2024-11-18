@@ -11,9 +11,6 @@ public class CommandGenerator {
 			new ResetCommand(),
 			new HelpCommand(),
 			new ExitCommand()
-		
-			
-			
 	);
 
 	public static Command parse(String[] commandWords) {		

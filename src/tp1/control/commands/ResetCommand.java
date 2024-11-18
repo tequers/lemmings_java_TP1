@@ -28,8 +28,6 @@ public class ResetCommand extends Command{
 		} else view.showError(Messages.INVALID_LEVEL_NUMBER );
 	}
 	
-
-	
 	@Override
 	public Command parse(String[] commandWords) {
 		if (this.matchCommandName(commandWords[0])) {
