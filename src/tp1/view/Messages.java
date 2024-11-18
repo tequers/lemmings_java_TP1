@@ -54,7 +54,7 @@ public class Messages {
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
 	public static final String SET_ROLE_COMMAND_INCORRECT_PARAMETERS =	"SetRoleCommand error"
-			+ " (Incorrect position or no object in that position admits that role) %s";
+			+ " (Incorrect position or no object in that position admits that role)";
 	// Errores de ficheros:
 	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
