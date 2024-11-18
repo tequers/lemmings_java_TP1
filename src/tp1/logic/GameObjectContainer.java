@@ -32,17 +32,6 @@ public class GameObjectContainer {
 	// @Override
 	// public String toString()
 	
-	public boolean isSolid(Position pos) {
-		int i=0;
-		while (i < cont ) { 
-			if (objects.get(i).isInPosition(pos) && objects.get(i).isSolid()) {
-				return true;
-			}
-			++i;
-		}
-		return false;
-	}
-	
 	public void update() {
 		//Actualizar los elementos del array
 		for (GameObject o : this.objects) {
@@ -67,18 +56,31 @@ public class GameObjectContainer {
 		return ret;
 	}
 	
-	public int getLemmingsInBoard() {
-		return this.nLemmingsInBoard;
+	public boolean isSolid(Position pos) {
+		int i=0;
+		while (i < cont ) { 
+			if (objects.get(i).isInPosition(pos) && objects.get(i).isSolid()) {
+				return true;
+			}
+			++i;
+		}
+		return false;
 	}
 	
-	public void setlemmingsInBoard(int nLemmings){
-		this.nLemmingsInBoard = nLemmings;
+	//Getters
+	public int getLemmingsInBoard() {
+		return this.nLemmingsInBoard;
 	}
 	
 	public int getCont() {
 		return this.cont;
 	}
-
+	
+	//Setters
+	public void setlemmingsInBoard(int nLemmings){
+		this.nLemmingsInBoard = nLemmings;
+	}
+	
 	public boolean setRole(Position pos, LemmingRole role) { 
 		int i=0;
 		while (i < cont ) { 
@@ -91,6 +93,7 @@ public class GameObjectContainer {
 		return false;
 	}
 	
+	//Interactions
 	public boolean receiveInteractionsFrom(GameItem obj) {
 		for (GameItem gi: objects) {
 			if (gi.receiveInteraction(obj)) {
