@@ -10,6 +10,7 @@ public class ExitDoor extends GameObject {
 		super(game, pos);
 	}
 	
+	
 	@Override
 	public void update() {};
 	
@@ -23,6 +24,7 @@ public class ExitDoor extends GameObject {
 		return false;
 	}
 	
+	//GameItem methods
 	@Override
 	public boolean receiveInteraction(GameItem other) {
 		return other.interactWith(this);

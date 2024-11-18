@@ -28,10 +28,6 @@ public class GameObjectContainer {
 		
 	}
 	
-	// TODO you should write a toString method to return the string that represents the object status
-	// @Override
-	// public String toString()
-	
 	public void update() {
 		//Actualizar los elementos del array
 		for (GameObject o : this.objects) {
@@ -67,6 +63,16 @@ public class GameObjectContainer {
 		return false;
 	}
 	
+	//Interactions
+		public boolean receiveInteractionsFrom(GameItem obj) {
+			for (GameItem gi: objects) {
+				if (gi.receiveInteraction(obj)) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
 	//Getters
 	public int getLemmingsInBoard() {
 		return this.nLemmingsInBoard;
@@ -93,14 +99,6 @@ public class GameObjectContainer {
 		return false;
 	}
 	
-	//Interactions
-	public boolean receiveInteractionsFrom(GameItem obj) {
-		for (GameItem gi: objects) {
-			if (gi.receiveInteraction(obj)) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 	
 }
