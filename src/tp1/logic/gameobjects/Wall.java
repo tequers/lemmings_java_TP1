@@ -15,8 +15,10 @@ public class Wall extends GameObject {
 		return true;
 	}
 	
+	@Override
 	public void update() {};
 	
+	@Override
 	public String getIcon() {
 		return Messages.WALL;
 	}

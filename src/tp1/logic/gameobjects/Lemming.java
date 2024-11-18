@@ -90,6 +90,7 @@ public class Lemming extends GameObject {
 	}
 	
 	//GameObject
+	@Override
 	public void update() {
 		if (isAlive()) 
 			role.play(this);
@@ -99,7 +100,6 @@ public class Lemming extends GameObject {
 	public String getIcon() {
 		return this.role.getIcon(this);
 	}
-	
 	
 	// TODO you should write a toString method to return the string that represents the object status
 	// @Override
@@ -135,15 +135,18 @@ public class Lemming extends GameObject {
 		this.pos = pos;
 	}
 	
-	//Interactions
+	//GameItem Interactions
+	@Override
 	public boolean interactWith(Wall obj) {
 		return this.role.interactWith(obj, this);
 	}
 	
+	@Override
 	public boolean receiveInteraction(GameItem other) {
 		return other.interactWith(this);
 	}
 	
+	@Override
     public boolean interactWith(ExitDoor obj){
     	if (this.isInPosition(obj.getPos())) {
     		return true;
