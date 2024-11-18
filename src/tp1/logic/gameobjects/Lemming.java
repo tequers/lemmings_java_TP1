@@ -111,7 +111,6 @@ public class Lemming extends GameObject {
 	public boolean setRole(LemmingRole role) {
 		if (role.equals(this.role)) return false;
 		else {
-			
 			this.role= role;
 			this.role.start(this);
 			return true;
@@ -125,11 +124,6 @@ public class Lemming extends GameObject {
 	
 	public GameWorld getGame() {
 		return this.game;
-	}
-	
-	//Setters
-	public void setPos(Position pos) {
-		this.pos = pos;
 	}
 	
 	//GameItem methods
@@ -148,7 +142,6 @@ public class Lemming extends GameObject {
     	if (obj.isInPosition(this.pos)) {
     		return true;
     	} else return false;
-    	
     }
     
 }

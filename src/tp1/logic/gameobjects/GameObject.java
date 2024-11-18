@@ -51,15 +51,11 @@ public abstract class GameObject implements GameItem {
 	}
 	
 	//Other methods
-	//TODO: comprobar si hay algún método que hay que meter en el GameItem
-	/*public Position getPos() {
-		return this.pos;
-	}*/
-	
 	public void setLife(boolean isALive) {
 		this.isAlive = isALive;
 	}
 	
+	@Override
 	public boolean setRole(LemmingRole role) {
 		return false;
 	}

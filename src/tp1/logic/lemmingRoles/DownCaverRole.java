@@ -23,11 +23,10 @@ public class DownCaverRole extends AbstractRole {
 		super(NAME,HELP,ICON,SYMBOL,HELP_NAME);
 	}
 	
-	
 	public void cave(Lemming lemming) {
 		this.hasCaved = false;
 		if (lemming.getGame().receiveInteractionsFrom(lemming)) {
-			lemming.setPos(lemming.nextPos(Direction.DOWN)); //Se podría trasladar a interactWith
+			lemming.fall();
 			this.hasCaved = true;
 		}
 	}
