@@ -135,7 +135,7 @@ public class Lemming extends GameObject {
 		this.pos = pos;
 	}
 	
-	//GameItem Interactions
+	//GameItem 
 	@Override
 	public boolean interactWith(Wall obj) {
 		return this.role.interactWith(obj, this);
