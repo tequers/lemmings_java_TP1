@@ -1,11 +1,11 @@
 package tp1.logic;
 
 import tp1.logic.gameobjects.ExitDoor;
+
 import tp1.logic.gameobjects.GameItem;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.MetalWall;
 import tp1.logic.gameobjects.Wall;
-import tp1.logic.lemmingRoles.DownCaverRole;
 import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.logic.lemmingRoles.ParachuterRole;
 import tp1.logic.lemmingRoles.WalkerRole;

@@ -1,10 +1,10 @@
 package tp1.logic.lemmingRoles;
 
 import tp1.logic.gameobjects.ExitDoor;
+
 import tp1.logic.gameobjects.GameItem;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
-import tp1.view.Messages;
 
 public interface LemmingRole {
 	
