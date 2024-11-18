@@ -16,14 +16,14 @@ public interface LemmingRole {
 		public String getSymbol();
 		public String getHelp();
 		public String getHelpName();
-		
-	
+		public  String helpText();
 		
 		public boolean receiveInteraction(GameItem other, Lemming lemming);
 		public boolean interactWith(Lemming receiver, Lemming lemming);
 		public boolean interactWith(Wall wall, Lemming lemming);
 		public boolean interactWith(ExitDoor door, Lemming lemming);
+		
 		public LemmingRole parse(String input);
-		public  String helpText();
+		
 }
  

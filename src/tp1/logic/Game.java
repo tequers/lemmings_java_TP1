@@ -43,7 +43,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 		return this.nLemmingsInBoard;
 	}
 
-	//@Override
+	@Override
 	public int numLemmingsDead() {
 		return this.nLemmingsDead;
 	}
@@ -80,57 +80,90 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 
 // GameModel methods
-	// @Override
+	@Override
 	public void update() {
 		this.nCycle++;
 		this.container.update();
 	}
 	
-	// @Override
+	@Override
+	public void reset(int nLevel) {
+		init(nLevel);
+	}	
+	
+	@Override
 	public void exit() {
 		this.fin = true;
 	}
 	
-	//@Override
+	@Override
 	public boolean isFinished() {
 		return playerWins() || playerLooses() || fin;
 	}
 	
-	public void reset(int nLevel) {
-		init(nLevel);
+	@Override
+	public boolean setRole(Position pos, LemmingRole role) {
+		return this.container.setRole(pos, role);
+	}
+	
+	@Override
+	public boolean isLevelValid(int nLevel) {
+		return nLevel >= 0 && nLevel <= this.maxLevel;
+	}
+	
+	@Override
+	public int getLevel() {
+		return this.nLevel;
 	}
 	
 // GameWorld methods (callbacks)
-	// @Override
-	public boolean isInAir(Position pos) {
-		return (!this.isSolid(new Position(pos.getCol(), pos.getRow()+1)));
-    }
-		
-	// @Override
+	
+	@Override
 	public void lemmingArrived() {
 		this.nLemmingsInBoard--;
 		this.nLemmingsExit++;
 	}
 	
+	@Override
+	public void addDeadLemming() {
+		this.nLemmingsInBoard--;
+		this.nLemmingsDead++;
+	}
+	
+	@Override
+	public boolean isInAir(Position pos) {
+		return (!this.isSolid(new Position(pos.getCol(), pos.getRow()+1)));
+    }
+		
+	
+	@Override
 	public boolean isSolid(Position pos) {	
 		if (this.dentroDelMapa(pos)) {
 			return this.container.isSolid(pos) ;
 		} else return false;
 	}
 	
+	@Override
 	public boolean dentroDelMapa(Position pos) {
 		int c = pos.getCol();
 		int r = pos.getRow();
 		return c < DIM_X && c >= 0 && r < DIM_Y && r >= 0;
 	
 	}
-	//
+	
+	@Override
+	public boolean receiveInteractionsFrom(GameItem obj) {
+		return this.container.receiveInteractionsFrom(obj);
+	}
+	
+	
 // Other methods
 	// TODO you should write a toString method to return 
 	//the string that represents the object status
 	// @Override
 	// public String toString()
 	
+	//Initialization of levels
 	public void init(int nLevel) {
 		//INICIALIZACIÓN VARIABLES 
 		this.nCycle = 0;
@@ -195,27 +228,6 @@ public class Game implements GameStatus, GameModel, GameWorld{
 				container.setlemmingsInBoard(4);
 			}
 		}
-	}
-	
-	public void addDeadLemming() {
-		this.nLemmingsInBoard--;
-		this.nLemmingsDead++;
-	}
-	
-	public boolean setRole(Position pos, LemmingRole role) {
-		return this.container.setRole(pos, role);
-	}
-	
-	public boolean receiveInteractionsFrom(GameItem obj) {
-		return this.container.receiveInteractionsFrom(obj);
-	}
-	
-	public boolean isLevelValid(int nLevel) {
-		return nLevel >= 0 && nLevel <= this.maxLevel;
-	}
-	
-	public int getLevel() {
-		return this.nLevel;
 	}
 	
 }

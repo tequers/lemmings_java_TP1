@@ -88,7 +88,6 @@ public class Lemming extends GameObject {
 	public void setCurrentFall(int n) {
 		this.currentFall = n;
 	}
-	//
 	
 	//GameObject
 	public void update() {
@@ -100,7 +99,8 @@ public class Lemming extends GameObject {
 	public String getIcon() {
 		return this.role.getIcon(this);
 	}
-	//
+	
+	
 	// TODO you should write a toString method to return the string that represents the object status
 	// @Override
 	// public String toString()
@@ -121,7 +121,6 @@ public class Lemming extends GameObject {
 			return true;
 		}
 	}
-	//
 	
 	//Getters
 	public Direction getDir() {
@@ -151,5 +150,5 @@ public class Lemming extends GameObject {
     	} else return false;
     	
     }
-    //
+    
 }
