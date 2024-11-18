@@ -6,8 +6,6 @@ import tp1.view.Messages;
 
 public class MetalWall extends Wall{
 	
-	private static final String NAME = Messages.METALWALL;
-	
 	public MetalWall(GameWorld game, Position pos) {
 		super(game,pos);
 	}
@@ -15,7 +13,7 @@ public class MetalWall extends Wall{
 	//GameObject methods
 	@Override
 	 public String getIcon( ) {
-		return this.NAME;
+		return Messages.METALWALL;
 	 }
 	
 	//GameItem methods
