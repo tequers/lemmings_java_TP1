@@ -45,6 +45,4 @@ public class WalkerRole extends AbstractRole {
 		return getName();
 	}
 	
-	
-		
 }

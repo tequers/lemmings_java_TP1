@@ -10,6 +10,7 @@ public class Wall extends GameObject {
 		super(game, pos);
 	}
 	
+	//GameObject methods
 	@Override
 	public boolean isSolid() {
 		return true;
@@ -23,6 +24,7 @@ public class Wall extends GameObject {
 		return Messages.WALL;
 	}
 	
+	//GameItem methods
 	@Override
 	public boolean receiveInteraction(GameItem other) {
 		return other.interactWith(this);

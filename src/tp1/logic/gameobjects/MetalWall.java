@@ -12,14 +12,17 @@ public class MetalWall extends Wall{
 		super(game,pos);
 	}
 
+	//GameObject methods
+	@Override
+	 public String getIcon( ) {
+		return this.NAME;
+	 }
+	
+	//GameItem methods
 	@Override
 	public boolean receiveInteraction(GameItem other) {
 		return false;
 	}
 	
-	@Override
-	 public String getIcon( ) {
-		return this.NAME;
-	 }
 	
 }

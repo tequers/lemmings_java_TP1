@@ -87,6 +87,7 @@ public class GameObjectContainer {
 		this.nLemmingsInBoard = nLemmings;
 	}
 	
+	//Roles
 	public boolean setRole(Position pos, LemmingRole role) { 
 		int i=0;
 		while (i < cont ) { 
