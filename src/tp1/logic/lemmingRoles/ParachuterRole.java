@@ -15,10 +15,13 @@ public class ParachuterRole extends AbstractRole {
 		super(NAME,HELP,ICON,SYMBOL,HELP_NAME);
 	}
 	
+	//LemmingRole methods
+	@Override
 	public void start( Lemming lemming ) {
 		lemming.setCurrentFall(0);
 	}
 	
+	@Override
     public void play( Lemming lemming ) {
     	if (lemming.isInAir()) {
     		lemming.fall();

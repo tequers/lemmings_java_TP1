@@ -23,7 +23,6 @@ public class DownCaverRole extends AbstractRole {
 		super(NAME,HELP,ICON,SYMBOL,HELP_NAME);
 	}
 	
-	public void start( Lemming lemming ) { this.hasCaved = false;};
 	
 	public void cave(Lemming lemming) {
 		this.hasCaved = false;
@@ -33,6 +32,11 @@ public class DownCaverRole extends AbstractRole {
 		}
 	}
 	
+	//LemmingRole methods
+	@Override
+	public void start( Lemming lemming ) { this.hasCaved = false;};
+		
+	@Override
     public void play( Lemming lemming ) {
     	this.cave(lemming);
     	if (!this.hasCaved) lemming.disableRole();

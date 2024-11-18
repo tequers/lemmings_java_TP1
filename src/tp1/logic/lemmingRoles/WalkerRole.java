@@ -17,6 +17,11 @@ public class WalkerRole extends AbstractRole {
 		super(NAME,HELP,ICON_RIGHT,SYMBOL,HELP_NAME);
 	}
 	
+	//LemmingRole methods
+	@Override
+	public void start(Lemming lemming ) {}
+	
+	@Override
 	public void play(Lemming lemming) {;	
 		lemming.walkOrFall();
 	}
@@ -34,11 +39,12 @@ public class WalkerRole extends AbstractRole {
     	return icon; 
 	}
 	
+	//Other methods
 	@Override
 	public String toString() {
 		return getName();
 	}
 	
-	public void start(Lemming lemming ) {}
+	
 		
 }
