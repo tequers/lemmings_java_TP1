@@ -117,7 +117,6 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 	
 // GameWorld methods (callbacks)
-	
 	@Override
 	public void lemmingArrived() {
 		this.nLemmingsInBoard--;

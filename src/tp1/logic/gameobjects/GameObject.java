@@ -15,24 +15,44 @@ public abstract class GameObject implements GameItem {
 		this.game = game;
 	}
 	
+	//Abstract methods
 	public abstract void update();
 	public abstract String getIcon();
-	public abstract boolean receiveInteraction(GameItem other);
 	
-	public Position getPos() {
-		return this.pos;
+	//GameItem methods
+	@Override
+	public boolean isSolid() {
+		return false;
 	}
 	
-	public boolean isInPosition(Position p) {
-		return p.equals(this.pos);
-	}
- 	
+	@Override
 	public boolean isAlive() {
 		return isAlive;
 	}
 	
-	public boolean isSolid() {
+	@Override
+	public boolean isInPosition(Position p) {
+		return p.equals(this.pos);
+	}
+	
+	@Override
+	public boolean interactWith(Lemming lemming) {
 		return false;
+	}
+	
+	@Override
+	public boolean interactWith(Wall wall) {
+		return false;
+	}
+	
+	@Override
+	public boolean interactWith(ExitDoor door) {
+		return false;
+	}
+	
+	//Other methods
+	public Position getPos() {
+		return this.pos;
 	}
 	
 	public void setLife(boolean isALive) {
@@ -42,17 +62,4 @@ public abstract class GameObject implements GameItem {
 	public boolean setRole(LemmingRole role) {
 		return false;
 	}
-	
-	public boolean interactWith(Lemming lemming) {
-		return false;
-	}
-	
-	public boolean interactWith(Wall wall) {
-		return false;
-	}
-	
-	public boolean interactWith(ExitDoor door) {
-		return false;
-	}
-	
 }
