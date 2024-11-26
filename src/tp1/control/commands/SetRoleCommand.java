@@ -19,8 +19,12 @@ public class SetRoleCommand extends Command{
 	 private static final String DETAILS = Messages.COMMAND_SET_ROLE_COMMAND_DETAILS;
 	 private static final String HELP = Messages.COMMAND_SET_ROLE_COMMAND_HELP;
 	    
+	 
 	private String[] roleInput;
-	
+	//
+	private Position pos;
+	private String role;
+	//
 	public SetRoleCommand() {
 		super(NAME,SHORTCUT,DETAILS,HELP);
 	}
@@ -50,15 +54,15 @@ public class SetRoleCommand extends Command{
 	        }
 	    } catch (RoleParseException rpe) {
 	        // Rol desconocido
-	    	view.showError(rpe.getMessage());
+	    	//view.showError(rpe.getMessage());
 	        throw new CommandExecuteException(
-	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1])
+	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1], rpe)
 	      );
 	    
 	    } catch (OffBoardException obe) {
-	    	view.showError(obe.getMessage());
+	    	//view.showError(obe.getMessage());
 	        throw new CommandExecuteException(
-	            Messages.COMMAND_EXECUTE_PROBLEM
+	            Messages.COMMAND_EXECUTE_PROBLEM, obe
 	        );
 	        
 	    }
@@ -82,6 +86,7 @@ public class SetRoleCommand extends Command{
 	
 					this.roleInput = commandWords;
 					row = this.roleInput[2];
+					if (row.length() != 1) throw new NumberFormatException();
 					col = Integer.valueOf(this.roleInput[3]); //TODO
 					//Position pos = posIn(row, col); //Puede
 					return this;
