@@ -71,6 +71,8 @@ public class Messages {
 //3.0
 	public static final String OFF_BOARD_POSITION = "Invalid position: %s";
 	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
+	public static final String COMMAND_EXECUTE_PROBLEM = "Command execute problem";
+
 	//
 	
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";

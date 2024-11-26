@@ -30,7 +30,7 @@ public class SetRoleCommand extends Command{
 	public void execute(GameModel game, GameView view) throws CommandExecuteException {
 	    String row = this.roleInput[2];
 	    int col = Integer.valueOf(this.roleInput[3]);
-	    Position pos = posIn(row, col); // Devuelve null si no existe la posición, y pos(row, col) si existe
+	    Position pos = positIn(row, col); // Devuelve null si no existe la posición, y pos(row, col) si existe
 	    String name = "";
 	   
 	    try {
@@ -50,18 +50,17 @@ public class SetRoleCommand extends Command{
 	        }
 	    } catch (RoleParseException rpe) {
 	        // Rol desconocido
-	    	
+	    	view.showError(rpe.getMessage());
 	        throw new CommandExecuteException(
-	        		Messages.INVALID_COMMAND_PARAMETERS + "\n" + 
 	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1])
-	        		+ ":" + name); //TODO:no sale el :Patata
+	      );
 	    
 	    } catch (OffBoardException obe) {
+	    	view.showError(obe.getMessage());
 	        throw new CommandExecuteException(
-	            "OFF BOARD" +
-	            Messages.POSITION.formatted(pos.getRow(), pos.getCol()) +
-	            " admits role " + name, obe
+	            Messages.COMMAND_EXECUTE_PROBLEM
 	        );
+	        
 	    }
 	}
 
@@ -120,6 +119,9 @@ public class SetRoleCommand extends Command{
 		throw new NullPointerException();
 	}
 	
-	
+	//TODO:
+	public Position positIn(String row, int col) {
+		return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
+	}
 	
 }
