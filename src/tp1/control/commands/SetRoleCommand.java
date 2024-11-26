@@ -56,8 +56,9 @@ public class SetRoleCommand extends Command{
 	        // Rol desconocido
 	    	//view.showError(rpe.getMessage());
 	        throw new CommandExecuteException(
-	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1]),
-	        		rpe);                                                          )
+	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1], rpe                                                             )
+	      );
+	    
 	    } catch (OffBoardException obe) {
 	    	//view.showError(obe.getMessage());
 	        throw new CommandExecuteException(
