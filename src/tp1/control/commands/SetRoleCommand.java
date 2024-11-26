@@ -50,15 +50,14 @@ public class SetRoleCommand extends Command{
 		            "No lemming in position " +
 		            Messages.POSITION.formatted(pos.getRow(), pos.getCol()) +
 		            " admits role " + name
-		        );
+		        );                            
 	        }
 	    } catch (RoleParseException rpe) {
 	        // Rol desconocido
 	    	//view.showError(rpe.getMessage());
 	        throw new CommandExecuteException(
-	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1], rpe)
-	      );
-	    
+	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1]),
+	        		rpe);                                                          )
 	    } catch (OffBoardException obe) {
 	    	//view.showError(obe.getMessage());
 	        throw new CommandExecuteException(
