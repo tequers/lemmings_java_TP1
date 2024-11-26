@@ -49,7 +49,7 @@ public class Messages {
 	// Errores de factorías:
 	public static final String UNKNOWN_COMMAND = "Unknown command: %s";
 	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: %s";
-	public static final String UNKNOWN_ROLE = "Unknown role";
+	public static final String UNKNOWN_ROLE = "Unknown role: %s";
 	// Errores de commandos:
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
