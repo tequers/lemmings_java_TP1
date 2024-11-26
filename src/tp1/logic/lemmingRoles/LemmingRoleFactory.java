@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 import java.util.List;
 
+import tp1.exceptions.GameParseException;
+import tp1.exceptions.RoleParseException;
+import tp1.view.Messages;
+
 
 public class LemmingRoleFactory {
 	
@@ -13,13 +17,13 @@ public class LemmingRoleFactory {
 			new WalkerRole()
 	);
 	
-	public static LemmingRole parse(String input) {
+	public static LemmingRole parse(String input) throws RoleParseException {
 		for (LemmingRole rol: availableRoles) {
 			if (rol.parse(input) != null) {
 				return rol;
 			}
 		}
-		return null;
+		throw new RoleParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 	}
 	
 	public static String helpText() {

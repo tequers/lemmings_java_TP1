@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.ExitDoor;
 
 import tp1.logic.gameobjects.GameItem;
@@ -9,6 +10,7 @@ import tp1.logic.gameobjects.Wall;
 import tp1.logic.lemmingRoles.LemmingRole;
 import tp1.logic.lemmingRoles.ParachuterRole;
 import tp1.logic.lemmingRoles.WalkerRole;
+import tp1.view.Messages;
 
 public class Game implements GameStatus, GameModel, GameWorld{
 
@@ -102,8 +104,18 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 	
 	@Override
-	public boolean setRole(Position pos, LemmingRole role) {
-		return this.container.setRole(pos, role);
+	public boolean setRole(LemmingRole role, Position pos) throws OffBoardException {
+	
+		if (this.dentroDelMapa(pos) ) {
+			return this.container.setRole(pos, role);
+		}
+				
+		
+		//String offBoard = "Position " + "(" + pos.getRow() + "," + pos.getCol() + ") is off board"; 
+		throw new OffBoardException("Position " + //TODO:
+		 		(Messages.POSITION.formatted(pos.getRow(),pos.getCol())) + " off the board");
+		//TODO: revisar que haya espacio
+		
 	}
 	
 	@Override

@@ -68,7 +68,10 @@ public class Messages {
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
-
+//3.0
+	public static final String OFF_BOARD_POSITION = "Invalid position: %s";
+	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
+	//
 	
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
 	public static final String COMMAND_HELP_TEXT = "%s: %s";

@@ -1,5 +1,9 @@
 package tp1.control.commands;
 
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
+import tp1.exceptions.OffBoardException;
+import tp1.exceptions.RoleParseException;
 import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.logic.Position;
@@ -21,25 +25,46 @@ public class SetRoleCommand extends Command{
 		super(NAME,SHORTCUT,DETAILS,HELP);
 	}
 	
-	//Command methods
+	// Command methods
 	@Override
-	public void execute(GameModel game, GameView view) {
-		String row = this.roleInput[2];
-		int col = Integer.valueOf(this.roleInput[3]);  
-		Position pos = posIn(row, col);//Devuelva null si no existe la posición,y pos(row,col) si existe
-		
-		if (pos != null) { //Comprobamos si la posición es válida
-			LemmingRole role = LemmingRoleFactory.parse(this.roleInput[1]) ;
-			if (role != null) { //Comprobamos si el rol es valido
-				if (game.setRole(pos, role)) { //Comprobamos si se ha podido asginar el role a algún lemming en la pos
-						game.update();
-						view.showGame();
-				}  else view.showError(Messages.SET_ROLE_COMMAND_INCORRECT_PARAMETERS);
-				
-			} else view.showError(Messages.UNKNOWN_ROLE);
-			
-		} else view.showError(Messages.SET_ROLE_COMMAND_INCORRECT_PARAMETERS);
+	public void execute(GameModel game, GameView view) throws CommandExecuteException {
+	    String row = this.roleInput[2];
+	    int col = Integer.valueOf(this.roleInput[3]);
+	    Position pos = posIn(row, col); // Devuelve null si no existe la posición, y pos(row, col) si existe
+	    String name = "";
+	   
+	    try {
+	    	 LemmingRole role = LemmingRoleFactory.parse(this.roleInput[1]); // Obtenemos el rol
+	    	 name = role.getName(); //TODO: revisar
+	        // Comprobamos si se pudo asignar el rol a un lemming en la posición
+	        if (game.setRole(role, pos)) {
+	            game.update();
+	            view.showGame();
+	        } 
+	        else {
+	        throw new CommandExecuteException(
+		            "No lemming in position " +
+		            Messages.POSITION.formatted(pos.getRow(), pos.getCol()) +
+		            " admits role " + name
+		        );
+	        }
+	    } catch (RoleParseException rpe) {
+	        // Rol desconocido
+	    	
+	        throw new CommandExecuteException(
+	        		Messages.INVALID_COMMAND_PARAMETERS + "\n" + 
+	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1])
+	        		+ ":" + name); //TODO:no sale el :Patata
+	    
+	    } catch (OffBoardException obe) {
+	        throw new CommandExecuteException(
+	            "OFF BOARD" +
+	            Messages.POSITION.formatted(pos.getRow(), pos.getCol()) +
+	            " admits role " + name, obe
+	        );
+	    }
 	}
+
 	
 	@Override
 	public String helpText(){
@@ -50,12 +75,23 @@ public class SetRoleCommand extends Command{
 	}
 	
 	@Override
-	public  Command parse(String[] commandWords) {
-		if (this.matchCommandName(commandWords[0])) {
-			this.roleInput = commandWords;
-			return this;
-		} else return null;
-		
+	public  Command parse(String[] commandWords) throws CommandParseException {
+		String row = "";
+		int col = -1;
+		try {
+			if (this.matchCommandName(commandWords[0])) {
+	
+					this.roleInput = commandWords;
+					row = this.roleInput[2];
+					col = Integer.valueOf(this.roleInput[3]); //TODO
+					//Position pos = posIn(row, col); //Puede
+					return this;
+					}
+		}catch (NumberFormatException e) {
+		 	throw new CommandParseException(Messages.INVALID_POSITION.formatted
+		 	 		(Messages.POSITION.formatted(row, col)));
+		}
+		return null;
 	}
 	
 	//Other methods
@@ -75,12 +111,15 @@ public class SetRoleCommand extends Command{
 		return letter - 'A'; // A -> 0, B -> 1 ...
 	}
 	
+	//TODO: se va a poder quitar probablemente
 	private Position posIn(String row, int col) {
 		if (rowIsValid(row) && colIsValid(col)) {
 			return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
 		}
-		return null;
+		//return null;
+		throw new NullPointerException();
 	}
+	
 	
 	
 }

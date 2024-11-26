@@ -1,5 +1,6 @@
 package tp1.control.commands;
 
+import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -29,12 +30,15 @@ public class ResetCommand extends Command{
 	}
 	
 	@Override
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		if (this.matchCommandName(commandWords[0])) {
 			if (commandWords.length == 2 || commandWords.length == 1) {
 				if (commandWords.length ==2) this.nLevel = commandWords[1];
+				
 				return this;
 			} 
+			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+ 
 		} 
 		return null;
 	}
