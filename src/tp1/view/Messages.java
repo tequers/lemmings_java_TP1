@@ -146,4 +146,16 @@ public class Messages {
 	public static final String LEMMING_LEFT = "ᗺ";
 	public static final String LEMMING_PARACHUTE = "🪂";
 	public static final String LEMMING_DOWN_CAVER = "´･ω･`";
+	
+//3.0 Load names and shortcuts
+	public static final String WALL_NAME = "Wall";
+	public static final String METAL_WALL_NAME = "MetalWall";
+	public static final String LEMMING_NAME = "Lemming";
+	public static final String EXIT_DOOR_NAME = "ExitDoor";
+	
+	public static final String WALL_SHORTCUT = "W";
+	public static final String METAL_WALL_SHORTCUT = "MW";
+	public static final String LEMMING_SHORTCUT = "L";
+	public static final String EXIT_DOOR_SHORTCUT = "ED";
+	
 }

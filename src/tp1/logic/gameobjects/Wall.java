@@ -6,8 +6,11 @@ import tp1.view.Messages;
 
 public class Wall extends GameObject {
 	
+	private final static String name = Messages.WALL;
+	private final static String shortcut = Messages.WALL_SHORTCUT;
+	
 	public Wall(GameWorld game, Position pos) {
-		super(game, pos);
+		super(game, pos, name, shortcut);
 	}
 	
 	//GameObject methods

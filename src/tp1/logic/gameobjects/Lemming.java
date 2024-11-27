@@ -1,5 +1,6 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
 import tp1.logic.Direction;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
@@ -141,5 +142,11 @@ public class Lemming extends GameObject {
     public boolean interactWith(ExitDoor obj){
     	return obj.isInPosition(this.pos);
     }
+	
+	//
+	private static Direction getLemmingDirectionFrom(String line) throws ObjectParseException {...}
+	private static int getLemmingHeigthFrom(String line) throws ObjectParseException {...}
+	private static LemmingRole getLemmingRoleFrom(String line) throws ObjectParseException {...}
+}
     
 }

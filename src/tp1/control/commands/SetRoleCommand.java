@@ -23,7 +23,7 @@ public class SetRoleCommand extends Command{
 	private String[] roleInput;
 	//
 	private Position pos;
-	private String role;
+	private LemmingRole role;
 	//
 	public SetRoleCommand() {
 		super(NAME,SHORTCUT,DETAILS,HELP);
@@ -32,13 +32,14 @@ public class SetRoleCommand extends Command{
 	// Command methods
 	@Override
 	public void execute(GameModel game, GameView view) throws CommandExecuteException {
-	    String row = this.roleInput[2];
+	    
+		/*String row = this.roleInput[2];
 	    int col = Integer.valueOf(this.roleInput[3]);
 	    Position pos = positIn(row, col); // Devuelve null si no existe la posición, y pos(row, col) si existe
-	    String name = "";
+	    String name = "";*/
+		String name = "";
 	   
 	    try {
-	    	 LemmingRole role = LemmingRoleFactory.parse(this.roleInput[1]); // Obtenemos el rol
 	    	 name = role.getName(); //TODO: revisar
 	        // Comprobamos si se pudo asignar el rol a un lemming en la posición
 	        if (game.setRole(role, pos)) {
@@ -52,19 +53,11 @@ public class SetRoleCommand extends Command{
 		            " admits role " + name
 		        );                            
 	        }
-	    } catch (RoleParseException rpe) {
-	        // Rol desconocido
-	    	//view.showError(rpe.getMessage());
-	        throw new CommandExecuteException(
-	        		Messages.UNKNOWN_ROLE.formatted(this.roleInput[1], rpe                                                             )
-	      );
-	    
-	    } catch (OffBoardException obe) {
+	    }  catch (OffBoardException obe) {
 	    	//view.showError(obe.getMessage());
 	        throw new CommandExecuteException(
 	            Messages.COMMAND_EXECUTE_PROBLEM, obe
 	        );
-	        
 	    }
 	}
 
@@ -78,22 +71,30 @@ public class SetRoleCommand extends Command{
 	}
 	
 	@Override
-	public  Command parse(String[] commandWords) throws CommandParseException {
+	public Command parse(String[] commandWords) throws CommandParseException {
 		String row = "";
 		int col = -1;
 		try {
 			if (this.matchCommandName(commandWords[0])) {
-	
-					this.roleInput = commandWords;
-					row = this.roleInput[2];
-					if (row.length() != 1) throw new NumberFormatException();
-					col = Integer.valueOf(this.roleInput[3]); //TODO
-					//Position pos = posIn(row, col); //Puede
+
+				// this.roleInput = commandWords;
+				if (commandWords.length == 4 && row.length() == 1) {
+					row = commandWords[2];
+					this.role = LemmingRoleFactory.parse(this.roleInput[1]); // Obtenemos el rol
+					col = Integer.valueOf(this.roleInput[3]); // TODO
+					this.pos =  new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
 					return this;
-					}
-		}catch (NumberFormatException e) {
-		 	throw new CommandParseException(Messages.INVALID_POSITION.formatted
-		 	 		(Messages.POSITION.formatted(row, col)));
+				}
+				throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+				// if (row.length() != 1) throw new NumberFormatException();
+				// Position pos = posIn(row, col); //Puede
+			}
+		} catch (NumberFormatException e) {
+			throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(row, col)));
+		} catch (RoleParseException rpe) {
+			// Rol desconocido
+			// view.showError(rpe.getMessage());
+			throw new CommandParseException(Messages.UNKNOWN_ROLE.formatted(commandWords[1], rpe));
 		}
 		return null;
 	}

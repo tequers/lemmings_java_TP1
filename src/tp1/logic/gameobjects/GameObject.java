@@ -1,5 +1,8 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.ObjectParserException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
@@ -9,10 +12,17 @@ public abstract class GameObject implements GameItem {
 	protected boolean isAlive;
 	protected GameWorld game;
 	
-	public GameObject(GameWorld game, Position pos) {
+	//3.0
+	protected final String name;
+	protected final String shortcut;
+	//
+	
+	public GameObject(GameWorld game, Position pos, String name, String shortcut) {
 		this.isAlive = true;
 		this.pos = pos;
 		this.game = game;
+		this.name = name;
+		this.shortcut = shortcut;
 	}
 	
 	//Abstract methods
@@ -59,4 +69,13 @@ public abstract class GameObject implements GameItem {
 	public boolean setRole(LemmingRole role) {
 		return false;
 	}
+	
+	//3.0
+	public GameObject parse(String line, GameWorld game) 
+			throws ObjectParseException, OffBoardException {
+		
+	}
+	
+	private static Position getPositionFrom(String line) throws ObjectParseException, OffBoardException {...}
+	private static String getObjectNameFrom(String line) throws ObjectParseException {}
 }

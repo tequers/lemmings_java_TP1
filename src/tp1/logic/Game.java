@@ -1,5 +1,12 @@
 package tp1.logic;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import tp1.exceptions.GameLoadException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.ExitDoor;
 
@@ -34,6 +41,33 @@ public class Game implements GameStatus, GameModel, GameWorld{
 		this.fin = false;
 	}
 	
+//load 
+	/*
+	 * Como se puede observar, este método puede lanzar la misma excepción que el constructor de la clase 
+	 * FileGameConfiguration y además en los mismos casos.
+	 */
+	public void load(String fileName) throws GameLoadException {
+	    // Validate the input file name
+	    if (fileName == null || fileName.isEmpty()) {
+	        throw new GameLoadException("File name cannot be null or empty.");
+	    }
+
+	    // Attempt to read from the file and process it
+	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName));
+	         BufferedWriter outChars = new BufferedWriter(new FileWriter("output.txt"))) {
+
+	        String linea;
+	        while ((linea = inChars.readLine()) != null) {
+	            outChars.write(linea);
+	            outChars.newLine();
+	        }
+	    } catch (IOException e) {
+	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
+	    }
+	}
+
+		
+	 //TODO: load
 // GameStatus methods
 	@Override
 	public int getCycle() {
