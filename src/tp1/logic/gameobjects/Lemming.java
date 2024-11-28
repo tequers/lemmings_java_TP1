@@ -1,11 +1,16 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.CommandParseException;
 import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
+import tp1.exceptions.RoleParseException;
 import tp1.logic.Direction;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
+import tp1.logic.lemmingRoles.LemmingRoleFactory;
 import tp1.logic.lemmingRoles.WalkerRole;
+import tp1.view.Messages;
 
 public class Lemming extends GameObject {
 
@@ -14,14 +19,20 @@ public class Lemming extends GameObject {
 	private final int fall = 3;
 	private int currentFall;
 	private boolean wasFalling;
+	//3.0
+
+	private final static String name = Messages.LEMMING_NAME;
+	private final static String shortcut = Messages.LEMMING_SHORTCUT;
 	
+	//
 	public Lemming(GameWorld game, Position pos, LemmingRole role) {
-		super(game, pos);
+		super(game, pos, name, shortcut);
 		this.role = role;
 		this.currentFall = 0;
 		this.dir = Direction.RIGHT;
 		this.wasFalling = false;
 	}
+	
 	
 	//Movement
 	public Position nextPos(Direction dir) {
@@ -31,7 +42,7 @@ public class Lemming extends GameObject {
 	
 	public void walk() {
 		Position nextPos = this.nextPos(this.dir);
-		if (this.game.dentroDelMapa(nextPos)) {
+		if (GameWorld.dentroDelMapa(nextPos)) {
 			if (this.game.isSolid(nextPos)) this.changeDir();
 			else this.pos = nextPos;	
 		} else  this.changeDir();
@@ -39,7 +50,7 @@ public class Lemming extends GameObject {
 	
 	public void fall() {
 		Position nextPos= this.nextPos(Direction.DOWN);
-		if (this.game.dentroDelMapa(nextPos)) {
+		if (GameWorld.dentroDelMapa(nextPos)) {
 			this.pos = nextPos;
 		} else this.dies();
 				
@@ -144,9 +155,58 @@ public class Lemming extends GameObject {
     }
 	
 	//
-	private static Direction getLemmingDirectionFrom(String line) throws ObjectParseException {...}
-	private static int getLemmingHeigthFrom(String line) throws ObjectParseException {...}
-	private static LemmingRole getLemmingRoleFrom(String line) throws ObjectParseException {...}
+	@Override
+	public GameObject parse(String line, GameWorld game) 
+			throws ObjectParseException, OffBoardException {
+		String[] words = line.trim().split("\\s+");
+		Position pos = super.checkPositionFrom(words[0]);
+		if (super.checkObjectNameFrom(words[1])) {
+			Direction dir = Lemming.getLemmingDirectionFrom(words[2]);
+			int height = Lemming.getLemmingHeigthFrom(words[3]);
+			try {
+				LemmingRole role = LemmingRoleFactory.parse(words[4]);
+			} catch (RoleParseException rpe) {
+				throw new ObjectParseException(); //TODO: RELLENAR info
+			}
+			
+			Lemming lemming = new Lemming(game, pos, role);
+			lemming.setDir(dir);
+			lemming.setCurrentFall(height);
+			return lemming;
+		}
+		
+	
+		return null;
+		
+	}
+	
+
+	private static Direction getLemmingDirectionFrom(String direction)
+			throws ObjectParseException {
+		switch(direction.toUpperCase()) {
+			case("RIGHT"):
+				return Direction.RIGHT;
+			case("LEFT"):
+				return Direction.RIGHT;
+		}
+		throw new ObjectParseException(); //TODO: RELLENAR
+		
+	}
+	private static int getLemmingHeigthFrom(String height)
+			throws ObjectParseException {
+		try {
+			int h = Integer.valueOf(height); 
+		} catch(NumberFormatException e) {
+			throw new ObjectParseException();//TODO: RELLENAR
+		}
+		
+		throw new ObjectParseException();//TODO: RELLENAR
+		
+	}
+	
+	//3.0
+	public void setDir(Direction dir) {
+		this.dir = dir;
 }
     
 }

@@ -140,7 +140,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	@Override
 	public boolean setRole(LemmingRole role, Position pos) throws OffBoardException {
 	
-		if (this.dentroDelMapa(pos) ) {
+		if (GameWorld.dentroDelMapa(pos) ) {
 			return this.container.setRole(pos, role);
 		}
 				
@@ -183,16 +183,17 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	@Override
 	public boolean isSolid(Position pos) {	
-		return this.dentroDelMapa(pos) && this.container.isSolid(pos);
+		return GameWorld.dentroDelMapa(pos) && this.container.isSolid(pos);
 	}
 	
+	/* TODO: QUITAR, SE VOLVIÓ ESTÁTICA
 	@Override
 	public boolean dentroDelMapa(Position pos) {
 		int c = pos.getCol();
 		int r = pos.getRow();
 		return c < DIM_X && c >= 0 && r < DIM_Y && r >= 0;
 	
-	}
+	}*/
 	
 	@Override
 	public boolean receiveInteractionsFrom(GameItem obj) {
