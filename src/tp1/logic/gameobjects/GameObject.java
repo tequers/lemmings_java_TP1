@@ -73,20 +73,24 @@ public abstract class GameObject implements GameItem {
 
 	// 3.0
 	public abstract GameObject parse(String line, GameWorld game) 
-			throws ObjectParseException, OffBoardException;
-		
+			throws ObjectParseException, OffBoardException ;
+	
 	
 	//TODO: cambiar las llamadas a estáticas en las sublcases
 	public static Position checkPositionFrom(String pos) throws ObjectParseException, OffBoardException {
 		if (pos.length() == 5 && pos.charAt(0) == '('  && pos.charAt(2) == ',' &&
 				pos.charAt(4) == ')') {
+			
+			try {
 				int col =  Integer.valueOf(pos.charAt(1));
 				int row =  Integer.valueOf( pos.charAt(3));
 				Position posit = new Position(col,row); //TODO: revisar que excepciones puede lanzar
 				if (GameWorld.dentroDelMapa(posit)) {
 					return posit;
 				}
-				
+			} catch(NumberFormatException e) {
+				throw new ObjectParseException();
+			}
 				throw new OffBoardException(); //TODO: RELLENAR MENSAJE
 		}
 		
@@ -97,7 +101,7 @@ public abstract class GameObject implements GameItem {
 	public boolean checkObjectNameFrom(String nombreObjeto) throws ObjectParseException {
 		if (nombreObjeto.equalsIgnoreCase(this.name) ||
 				nombreObjeto.equalsIgnoreCase(this.shortcut) ) {
-			return  false;
+			return  true;
 		}
 		
 		throw new ObjectParseException(); //TODO: RELLENAR INFO

@@ -46,6 +46,13 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	 * Como se puede observar, este método puede lanzar la misma excepción que el constructor de la clase 
 	 * FileGameConfiguration y además en los mismos casos.
 	 */
+	
+	public void load(String fileName) throws GameLoadException {
+		GameWorld game = null;
+		new FileGameConfiguration(fileName, game);
+	}
+	
+	
 	public void load(String fileName) throws GameLoadException {
 	    // Validate the input file name
 	    if (fileName == null || fileName.isEmpty()) {

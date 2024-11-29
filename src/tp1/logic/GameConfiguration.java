@@ -11,6 +11,4 @@ public interface GameConfiguration {
 	   public int numLemmingToWin();
 	   // game objects
 	   public GameObjectContainer getGameObjects();
-	   //load
-	   public void load(String fileName) throws GameLoadException ;
 }

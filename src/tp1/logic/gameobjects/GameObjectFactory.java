@@ -36,7 +36,7 @@ public class GameObjectFactory {
 		for (GameObject go: availableGameObjects) {
 		    // Código para procesar cada clase
 			
-			GameObject gObj = go.parse(line, game);
+			GameObject gObj = go.parse(line, game); //
 			if (gObj != null) {
 			    return gObj; // Si un objeto pudo parsearse, lo retornamos
 			}

@@ -161,6 +161,7 @@ public class Lemming extends GameObject {
 		String[] words = line.trim().split("\\s+");
 		Position pos = super.checkPositionFrom(words[0]);
 		if (super.checkObjectNameFrom(words[1])) {
+			  
 			Direction dir = Lemming.getLemmingDirectionFrom(words[2]);
 			int height = Lemming.getLemmingHeigthFrom(words[3]);
 			try {
