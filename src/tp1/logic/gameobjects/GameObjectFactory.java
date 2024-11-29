@@ -22,15 +22,12 @@ public class GameObjectFactory {
 	//o bien tiene éxito al crear el objeto o bien lanza una excepción
 	
 	//
-	private  static GameWorld game = null;
-	private  static tp1.logic.Position pos = null;
-	private static LemmingRole role = null;
 	//
 	private static final List<GameObject> availableGameObjects = Arrays.asList(
-			new Wall(game, pos),
-			new MetalWall(game,pos),
-			new Lemming(game,pos, role),
-			new ExitDoor(game, pos)
+			new Wall(null, null),
+			new MetalWall(null,null),
+			new Lemming(null,null, null),
+			new ExitDoor(null, null)
 			
 	);
 			
