@@ -1,5 +1,11 @@
 package tp1.logic;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import tp1.exceptions.GameLoadException;
 
 public class FileGameConfiguration implements GameConfiguration{
@@ -15,6 +21,25 @@ public class FileGameConfiguration implements GameConfiguration{
 	
 	public FileGameConfiguration(String fileName, GameWorld game)
 			throws GameLoadException {
+		  // Validate the input file name
+	    if (fileName == null || fileName.isEmpty()) {
+	        throw new GameLoadException("File name cannot be null or empty.");
+	    }
+
+	    // Attempt to read from the file and process it
+	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName));
+	         BufferedWriter outChars = new BufferedWriter(new FileWriter("output.txt"))) {
+
+	        String linea =inChars.readLine()  ;
+	        
+	        while ((linea = inChars.readLine()) != null) {
+	            outChars.write(linea);
+	            outChars.newLine();
+	       
+	        }
+	    } catch (IOException e) {
+	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
+	    }
 		
 	}
 	   //
@@ -48,8 +73,7 @@ public class FileGameConfiguration implements GameConfiguration{
 		   {
 			   return new GameObjectContainer();//TODO: completar
 		   }
-		}
-		   //load
+}
 
 
 
