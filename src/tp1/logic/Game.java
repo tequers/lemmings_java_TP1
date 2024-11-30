@@ -49,29 +49,15 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	public void load(String fileName) throws GameLoadException {
 		GameWorld game = null;
-		new FileGameConfiguration(fileName, game);
+		FileGameConfiguration fnc = new FileGameConfiguration(fileName, game);
+		this.nCycle = fnc.getCycle();
+		this.nLemmingsExit = fnc.numLemingsExit();
+		this.nLemmingsToWin = fnc.numLemmingToWin();
+		this.nLemmingsInBoard = fnc.numLemmingsInBoard();
+		this.nLemmingsDead = fnc.numLemmingsDead();
+		this.container = fnc.getGameObjects();
 	}
 	
-	
-	public void load(String fileName) throws GameLoadException {
-	    // Validate the input file name
-	    if (fileName == null || fileName.isEmpty()) {
-	        throw new GameLoadException("File name cannot be null or empty.");
-	    }
-
-	    // Attempt to read from the file and process it
-	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName));
-	         BufferedWriter outChars = new BufferedWriter(new FileWriter("output.txt"))) {
-
-	        String linea;
-	        while ((linea = inChars.readLine()) != null) {
-	            outChars.write(linea);
-	            outChars.newLine();
-	        }
-	    } catch (IOException e) {
-	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
-	    }
-	}
 
 		
 	 //TODO: load

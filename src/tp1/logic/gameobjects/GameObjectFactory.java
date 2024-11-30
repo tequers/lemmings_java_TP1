@@ -31,7 +31,7 @@ public class GameObjectFactory {
 			
 	);
 			
-	public GameObject parse(String line, GameWorld game)
+	public static GameObject parse(String line, GameWorld game)
 			throws ObjectParseException, OffBoardException {
 		for (GameObject go: availableGameObjects) {
 		    // Código para procesar cada clase

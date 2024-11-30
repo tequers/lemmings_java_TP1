@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
+import tp1.logic.gameobjects.GameObject;
+import tp1.logic.gameobjects.GameObjectFactory;
 
 public class FileGameConfiguration implements GameConfiguration{
 	
@@ -17,7 +21,6 @@ public class FileGameConfiguration implements GameConfiguration{
 	private int nLemmingsToWin;
 	private int nLemmingsInBoard;
 	private int nLemmingsDead;
-	private int nLevel;
 	
 	public FileGameConfiguration(String fileName, GameWorld game)
 			throws GameLoadException {
@@ -30,18 +33,36 @@ public class FileGameConfiguration implements GameConfiguration{
 	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName));
 	         BufferedWriter outChars = new BufferedWriter(new FileWriter("output.txt"))) {
 
-	        String linea =inChars.readLine()  ;
-	        
-	        while ((linea = inChars.readLine()) != null) {
-	            outChars.write(linea);
-	            outChars.newLine();
-	       
+	        String line =inChars.readLine()  ;
+	        String[] words = line.trim().split("\\s+");
+
+	        if (words.length == 5) {
+	        	this.nCycle = Integer.valueOf(words[0]);
+	        	this.nLemmingsInBoard = Integer.valueOf(words[1]);
+	        	this.nLemmingsDead = Integer.valueOf(words[2]);
+	        	this.nLemmingsExit = Integer.valueOf(words[3]);
+	        	this.nLemmingsToWin = Integer.valueOf(words[4]);
+	        	
+	        	GameObjectContainer goc = new GameObjectContainer();
+	        	 while ((line = inChars.readLine()) != null) {
+	        		 GameObject gObj = GameObjectFactory.parse(line, game);
+	        		 goc.add(gObj);
+	 	        }
+	        	this.container = goc;
 	        }
+	        
 	    } catch (IOException e) {
 	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
-	    }
+	    } catch (NumberFormatException e) {
+	    	 throw  new GameLoadException();    //TODO: RELLENAR
+        } catch (ObjectParseException ope) {
+        	 throw  new GameLoadException();   //TODO: RELLENAR
+        } catch (OffBoardException obe) {
+        	 throw  new GameLoadException();   //TODO: RELLENAR
+        }
 		
 	}
+
 	   //
 	   @Override
 		public int getCycle() {
@@ -70,8 +91,10 @@ public class FileGameConfiguration implements GameConfiguration{
 
 	// game objects
 		public GameObjectContainer getGameObjects() 
-		   {
-			   return new GameObjectContainer();//TODO: completar
+		   {	
+			GameObjectContainer goc = new GameObjectContainer();
+			goc = this.container;
+			return goc;
 		   }
 }
 
