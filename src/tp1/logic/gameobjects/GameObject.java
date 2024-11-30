@@ -82,9 +82,9 @@ public abstract class GameObject implements GameItem {
 				pos.charAt(4) == ')') {
 			
 			try {
-				int col =  Integer.valueOf(pos.charAt(1));
-				int row =  Integer.valueOf( pos.charAt(3));
-				Position posit = new Position(col,row); //TODO: revisar que excepciones puede lanzar
+				int col =  Integer.valueOf(pos.charAt(1)-48);
+				int row =  Integer.valueOf( pos.charAt(3)-48);
+				Position posit = new Position(row,col); //TODO: revisar que excepciones puede lanzar
 				if (GameWorld.dentroDelMapa(posit)) {
 					return posit;
 				}
@@ -98,13 +98,13 @@ public abstract class GameObject implements GameItem {
 	}
 	
 	
-	public boolean checkObjectNameFrom(String nombreObjeto) throws ObjectParseException {
+	public boolean checkObjectNameFrom(String nombreObjeto)  {
 		if (nombreObjeto.equalsIgnoreCase(this.name) ||
 				nombreObjeto.equalsIgnoreCase(this.shortcut) ) {
 			return  true;
 		}
 		
-		throw new ObjectParseException(); //TODO: RELLENAR INFO
+		return false; //TODO: RELLENAR INFO
 		
 	}
 	

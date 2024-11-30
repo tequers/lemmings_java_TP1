@@ -35,10 +35,12 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	private boolean fin;
 		
-	public Game(int nLevel) {
+	public Game(int nLevel)  {
 		this.nLevel = nLevel;
 		init(nLevel);
 		this.fin = false;
+		
+		
 	}
 	
 //load 
@@ -48,8 +50,8 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	 */
 	
 	public void load(String fileName) throws GameLoadException {
-		GameWorld game = null;
-		FileGameConfiguration fnc = new FileGameConfiguration(fileName, game);
+		//GameWorld game = null;
+		FileGameConfiguration fnc = new FileGameConfiguration(fileName, this);
 		this.nCycle = fnc.getCycle();
 		this.nLemmingsExit = fnc.numLemingsExit();
 		this.nLemmingsToWin = fnc.numLemmingToWin();
@@ -117,7 +119,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	@Override
 	public void reset(int nLevel) {
-		init(nLevel);
+		//init(nLevel);
 	}	
 	
 	@Override
@@ -194,9 +196,18 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 	
 	//Initialization of levels
-	public void init(int nLevel) {
+	public void init(int nLevel){
 		//INICIALIZACIÓN VARIABLES 
+		try {
+		this.load("D:\\repositorios\\LEMS\\lems\\src\\tp1\\logic\\conf_0");
+			
+		} catch (GameLoadException gle) {
+			System.out.println("Game load error");
+		}
+		
+		/*
 		this.nCycle = 0;
+		
 		this.nLevel = nLevel;
 		this.nLemmingsExit = 0;
 		this.nLemmingsToWin = 2;
@@ -236,7 +247,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 		} else {
 			container.add(new Wall(this,new Position(7,6)));		
 			container.add(new Wall(this,new Position(7,5)));	
-		}
+		}*/
 	}
 	
 	private void initLemmings() {

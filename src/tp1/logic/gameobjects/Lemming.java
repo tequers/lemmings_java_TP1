@@ -165,15 +165,17 @@ public class Lemming extends GameObject {
 			Direction dir = Lemming.getLemmingDirectionFrom(words[2]);
 			int height = Lemming.getLemmingHeigthFrom(words[3]);
 			try {
-				LemmingRole role = LemmingRoleFactory.parse(words[4]);
+				Lemming lemming = new Lemming(game, pos, 
+						LemmingRoleFactory.parse(words[4]));
+
+				lemming.setDir(dir);
+				lemming.setCurrentFall(height);
+				return lemming;
 			} catch (RoleParseException rpe) {
 				throw new ObjectParseException(); //TODO: RELLENAR info
 			}
 			
-			Lemming lemming = new Lemming(game, pos, role);
-			lemming.setDir(dir);
-			lemming.setCurrentFall(height);
-			return lemming;
+			
 		}
 		
 	
@@ -197,11 +199,11 @@ public class Lemming extends GameObject {
 			throws ObjectParseException {
 		try {
 			int h = Integer.valueOf(height); 
+			return h;
 		} catch(NumberFormatException e) {
 			throw new ObjectParseException();//TODO: RELLENAR
 		}
 		
-		throw new ObjectParseException();//TODO: RELLENAR
 		
 	}
 	

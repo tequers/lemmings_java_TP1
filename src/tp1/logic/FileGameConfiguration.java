@@ -30,8 +30,7 @@ public class FileGameConfiguration implements GameConfiguration{
 	    }
 
 	    // Attempt to read from the file and process it
-	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName));
-	         BufferedWriter outChars = new BufferedWriter(new FileWriter("output.txt"))) {
+	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName))) {
 
 	        String line =inChars.readLine()  ;
 	        String[] words = line.trim().split("\\s+");
@@ -43,6 +42,7 @@ public class FileGameConfiguration implements GameConfiguration{
 	        	this.nLemmingsExit = Integer.valueOf(words[3]);
 	        	this.nLemmingsToWin = Integer.valueOf(words[4]);
 	        	
+	        	
 	        	GameObjectContainer goc = new GameObjectContainer();
 	        	 while ((line = inChars.readLine()) != null) {
 	        		 GameObject gObj = GameObjectFactory.parse(line, game);
@@ -52,13 +52,14 @@ public class FileGameConfiguration implements GameConfiguration{
 	        }
 	        
 	    } catch (IOException e) {
+	    	System.out.println(e.getMessage());
 	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
 	    } catch (NumberFormatException e) {
-	    	 throw  new GameLoadException();    //TODO: RELLENAR
+	    	 throw  new GameLoadException("Error first line");    //TODO: RELLENAR
         } catch (ObjectParseException ope) {
-        	 throw  new GameLoadException();   //TODO: RELLENAR
+        	 throw  new GameLoadException("Error al parsear un objeto");   //TODO: RELLENAR
         } catch (OffBoardException obe) {
-        	 throw  new GameLoadException();   //TODO: RELLENAR
+        	 throw  new GameLoadException("Error pos fuera del mapa");   //TODO: RELLENAR
         }
 		
 	}
