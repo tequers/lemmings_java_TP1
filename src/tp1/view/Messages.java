@@ -4,7 +4,7 @@ import tp1.util.MyStringUtils;
 
 public class Messages {
 	
-	public static final String VERSION = "2.2";
+	public static final String VERSION = "3.0";
 
 	public static final String GAME_NAME = "Lemmings";
 
@@ -48,7 +48,7 @@ public class Messages {
 //Commands
 	// Errores de factorías:
 	public static final String UNKNOWN_COMMAND = "Unknown command: %s";
-	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: %s";
+	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: \"%s\"";
 	public static final String UNKNOWN_ROLE = "Unknown role: %s";
 	// Errores de commandos:
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
@@ -64,12 +64,14 @@ public class Messages {
 	public static final String INVALID_COMMAND = "Invalid command: %s";
 	public static final String INVALID_DIRECTION = "Invalid direction: %s";
 	public static final String INVALID_HEIGHT = "Invalid height: %s";
-	public static final String INVALID_GAME_STATUS = "Invalid game status";
+	public static final String INVALID_GAME_STATUS = "Invalid game status: \"%s\"";
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
-//3.0
-	public static final String OFF_BOARD_POSITION = "Invalid position: %s";
+	
+	public static final String INVALID_FILE_CONFIG = "Invalid file \"%s\" configuration";
+	//3.0
+	public static final String OFF_BOARD_POSITION = "Invalid position: \"%s\"";
 	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
 	public static final String COMMAND_EXECUTE_PROBLEM = "Command execute problem";
 
@@ -119,7 +121,14 @@ public class Messages {
 	public static final String COMMAND_SET_ROLE_COMMAND_SHORTCUT = "sr";
 	public static final String COMMAND_SET_ROLE_COMMAND_DETAILS = "[s]et[R]ole ROLE ROW COL";
 	public static final String COMMAND_SET_ROLE_COMMAND_HELP = "sets the lemming in position (ROW,COL) to role ROLE";
-//Roles
+	
+	//LOAD COMMAND
+	public static final String COMMAND_LOAD_COMMAND_NAME = "load";
+	public static final String COMMAND_LOAD_COMMAND_SHORTCUT = "l";
+	public static final String COMMAND_LOAD_COMMAND_DETAILS = "[l]oad <fileName>";
+	public static final String COMMAND_LOAD_COMMAND_HELP = "load the game configuration from text file <fileName>";
+
+	//Roles
 	public static final String WALKER_ROL_SYMBOL = "W";
 	public static final String WALKER_ROL_NAME = "Walker";
 	public static final String WALKER_ROL_HELP_NAME = "[W]alker";
@@ -157,5 +166,7 @@ public class Messages {
 	public static final String METAL_WALL_SHORTCUT = "MW";
 	public static final String LEMMING_SHORTCUT = "L";
 	public static final String EXIT_DOOR_SHORTCUT = "ED";
+	
+//3.0 
 	
 }

@@ -78,12 +78,12 @@ public abstract class GameObject implements GameItem {
 	
 	//TODO: cambiar las llamadas a estáticas en las sublcases
 	public static Position checkPositionFrom(String pos) throws ObjectParseException, OffBoardException {
-		if (pos.length() == 5 && pos.charAt(0) == '('  && pos.charAt(2) == ',' &&
-				pos.charAt(4) == ')') {
+		String[] p = pos.replace("(", "").replace(")", "").split(",");
+		if (p.length == 2) {
 			
 			try {
-				int col =  Integer.valueOf(pos.charAt(1)-48);
-				int row =  Integer.valueOf( pos.charAt(3)-48);
+				int col =  Integer.valueOf(p[0]);
+				int row =  Integer.valueOf(p[1]);
 				Position posit = new Position(row,col); //TODO: revisar que excepciones puede lanzar
 				if (GameWorld.dentroDelMapa(posit)) {
 					return posit;

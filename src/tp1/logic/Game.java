@@ -198,16 +198,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	//Initialization of levels
 	public void init(int nLevel){
 		//INICIALIZACIÓN VARIABLES 
-		try {
-		this.load("D:\\repositorios\\LEMS\\lems\\src\\tp1\\logic\\conf_0");
-			
-		} catch (GameLoadException gle) {
-			System.out.println("Game load error");
-		}
-		
-		/*
 		this.nCycle = 0;
-		
 		this.nLevel = nLevel;
 		this.nLemmingsExit = 0;
 		this.nLemmingsToWin = 2;
@@ -247,7 +238,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 		} else {
 			container.add(new Wall(this,new Position(7,6)));		
 			container.add(new Wall(this,new Position(7,5)));	
-		}*/
+		}
 	}
 	
 	private void initLemmings() {

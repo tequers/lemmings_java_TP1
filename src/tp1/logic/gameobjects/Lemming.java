@@ -192,7 +192,7 @@ public class Lemming extends GameObject {
 			case("LEFT"):
 				return Direction.RIGHT;
 		}
-		throw new ObjectParseException(); //TODO: RELLENAR
+		throw new ObjectParseException(Messages.INVALID_DIRECTION.formatted(direction)); //TODO: RELLENAR
 		
 	}
 	private static int getLemmingHeigthFrom(String height)

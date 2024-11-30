@@ -2,6 +2,7 @@ package tp1.logic;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.GameObjectFactory;
+import tp1.view.Messages;
 
 public class FileGameConfiguration implements GameConfiguration{
 	
@@ -24,15 +26,11 @@ public class FileGameConfiguration implements GameConfiguration{
 	
 	public FileGameConfiguration(String fileName, GameWorld game)
 			throws GameLoadException {
-		  // Validate the input file name
-	    if (fileName == null || fileName.isEmpty()) {
-	        throw new GameLoadException("File name cannot be null or empty.");
-	    }
-
 	    // Attempt to read from the file and process it
+		String line = null; //TODO: REVISAR
 	    try (BufferedReader inChars = new BufferedReader(new FileReader(fileName))) {
 
-	        String line =inChars.readLine()  ;
+	        line =inChars.readLine()  ;
 	        String[] words = line.trim().split("\\s+");
 
 	        if (words.length == 5) {
@@ -49,17 +47,16 @@ public class FileGameConfiguration implements GameConfiguration{
 	        		 goc.add(gObj);
 	 	        }
 	        	this.container = goc;
-	        }
-	        
-	    } catch (IOException e) {
-	    	System.out.println(e.getMessage());
-	        throw new GameLoadException("Error while loading file: " + e.getMessage(), e);
+	        } else 
+	        		throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(line));
 	    } catch (NumberFormatException e) {
-	    	 throw  new GameLoadException("Error first line");    //TODO: RELLENAR
+	    	 throw  new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line));    //TODO: RELLENAR
         } catch (ObjectParseException ope) {
-        	 throw  new GameLoadException("Error al parsear un objeto");   //TODO: RELLENAR
+        	 throw  new GameLoadException(Messages.UNKNOWN_GAME_OBJECT.formatted(line));   //TODO: RELLENAR
         } catch (OffBoardException obe) {
         	 throw  new GameLoadException("Error pos fuera del mapa");   //TODO: RELLENAR
+        } catch (IOException fnf) {
+        	 throw  new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
         }
 		
 	}
