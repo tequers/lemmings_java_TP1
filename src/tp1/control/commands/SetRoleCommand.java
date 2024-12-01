@@ -70,7 +70,7 @@ public class SetRoleCommand extends Command{
 	
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException {
-		String row = "";
+		String row = null;
 		int col = -1;
 		try {
 			if (this.matchCommandName(commandWords[0])) {
