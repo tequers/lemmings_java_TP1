@@ -52,9 +52,9 @@ public class FileGameConfiguration implements GameConfiguration{
 	    } catch (NumberFormatException e) {
 	    	 throw  new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line));    //TODO: RELLENAR
         } catch (ObjectParseException ope) {
-        	 throw  new GameLoadException(Messages.UNKNOWN_GAME_OBJECT.formatted(line));   //TODO: RELLENAR
+        	 throw  new GameLoadException(ope.getMessage());//Messages.UNKNOWN_GAME_OBJECT.formatted(line));   //TODO: RELLENAR
         } catch (OffBoardException obe) {
-        	 throw  new GameLoadException("Error pos fuera del mapa");   //TODO: RELLENAR
+        	throw  new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line));    //TODO: RELLENAR
         } catch (IOException fnf) {
         	 throw  new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
         }

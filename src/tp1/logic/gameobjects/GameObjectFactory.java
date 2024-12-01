@@ -16,6 +16,7 @@ import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
 import tp1.logic.lemmingRoles.LemmingRole;
+import tp1.view.Messages;
 
 public class GameObjectFactory {
 		// a factoría de objetos nunca devuelve el valor null: 
@@ -42,6 +43,6 @@ public class GameObjectFactory {
 			}
 			
 		}
-		throw new ObjectParseException(); //TODO: INFO
+		throw new ObjectParseException(Messages.UNKNOWN_GAME_OBJECT.formatted(line)); //TODO: RELLENAR MENSAJE
 	}
 }

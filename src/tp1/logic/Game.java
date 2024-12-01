@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameLoadException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.ExitDoor;
@@ -34,12 +35,12 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	private int nLevel;
 	
 	private boolean fin;
-		
+	private String nameConfig;
+	
 	public Game(int nLevel)  {
 		this.nLevel = nLevel;
 		init(nLevel);
 		this.fin = false;
-		
 		
 	}
 	
@@ -50,7 +51,6 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	 */
 	
 	public void load(String fileName) throws GameLoadException {
-		//GameWorld game = null;
 		FileGameConfiguration fnc = new FileGameConfiguration(fileName, this);
 		this.nCycle = fnc.getCycle();
 		this.nLemmingsExit = fnc.numLemingsExit();
@@ -58,6 +58,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 		this.nLemmingsInBoard = fnc.numLemmingsInBoard();
 		this.nLemmingsDead = fnc.numLemmingsDead();
 		this.container = fnc.getGameObjects();
+		this.nameConfig = fileName;
 	}
 	
 
@@ -118,8 +119,11 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 	
 	@Override
-	public void reset(int nLevel) {
-		//init(nLevel);
+	public void reset(int nLevel) throws GameLoadException	  {
+		if (this.nameConfig != null) {
+			this.load(this.nameConfig); 
+		} else 
+			init(nLevel);
 	}	
 	
 	@Override

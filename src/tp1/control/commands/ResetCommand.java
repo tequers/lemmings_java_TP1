@@ -1,6 +1,8 @@
 package tp1.control.commands;
 
+import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.GameLoadException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -19,14 +21,21 @@ public class ResetCommand extends Command{
 	
 	
 	@Override
-	public void execute(GameModel game, GameView view) {
-		if (this.nLevel == null) {
+	public void execute(GameModel game, GameView view) throws CommandExecuteException{
+		try { if (this.nLevel == null) {
+			
 			game.reset(game.getLevel());
 			view.showGame();
-		} else if (game.isLevelValid(Integer.valueOf(this.nLevel))) {
-			game.reset(Integer.valueOf(this.nLevel));
+			
+			}
+			 else if (game.isLevelValid(Integer.valueOf(this.nLevel))) {
+			game.reset(Integer.valueOf(this.nLevel)); //TODO: POSIBLE EXCECPIÓN
 			view.showGame();
-		} else view.showError(Messages.INVALID_LEVEL_NUMBER );
+			} else view.showError(Messages.INVALID_LEVEL_NUMBER );
+		
+		} catch (GameLoadException gle) {
+			throw new CommandExecuteException() ; //TODO: RELLENAR
+			}
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
+import tp1.view.Messages;
 
 public abstract class GameObject implements GameItem {
 	protected Position pos;
@@ -77,7 +78,7 @@ public abstract class GameObject implements GameItem {
 	
 	
 	//TODO: cambiar las llamadas a estáticas en las sublcases
-	public static Position checkPositionFrom(String pos) throws ObjectParseException, OffBoardException {
+	public static Position checkPositionFrom(String pos, String line) throws ObjectParseException, OffBoardException {
 		String[] p = pos.replace("(", "").replace(")", "").split(",");
 		if (p.length == 2) {
 			
@@ -88,13 +89,12 @@ public abstract class GameObject implements GameItem {
 				if (GameWorld.dentroDelMapa(posit)) {
 					return posit;
 				}
+				throw new OffBoardException();
 			} catch(NumberFormatException e) {
-				throw new ObjectParseException();
+				throw new ObjectParseException(Messages.INVALID_POSITION.formatted(line));
 			}
-				throw new OffBoardException(); //TODO: RELLENAR MENSAJE
 		}
-		
-		throw new ObjectParseException(); //TODO: RELLENAR MENSAJE
+		throw new ObjectParseException(Messages.INVALID_POSITION.formatted(line));
 	}
 	
 	

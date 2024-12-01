@@ -60,18 +60,19 @@ public class Messages {
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
 	//Errores de roles
 	// Errores de parseo de otras cosas:
-	public static final String INVALID_POSITION = "Invalid position: %s";
+	public static final String INVALID_POSITION = "Invalid position: \"%s\"";
 	public static final String INVALID_COMMAND = "Invalid command: %s";
-	public static final String INVALID_DIRECTION = "Invalid direction: %s";
-	public static final String INVALID_HEIGHT = "Invalid height: %s";
+	public static final String INVALID_DIRECTION = "Invalid direction: \"%s\"";
+	public static final String INVALID_HEIGHT = "Invalid height: \"%s\"";
 	public static final String INVALID_GAME_STATUS = "Invalid game status: \"%s\"";
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
+	public static final String INVALID_ROLE = "Invalid lemming role: \"%s\"";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
 	public static final String ERROR_PARSING_GAME_OBJECT = "Not a correct game object because: %s";
 	
 	public static final String INVALID_FILE_CONFIG = "Invalid file \"%s\" configuration";
 	//3.0
-	public static final String OFF_BOARD_POSITION = "Invalid position: \"%s\"";
+	public static final String OFF_BOARD_POSITION = "Object position is off board: \"%s\"";
 	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
 	public static final String COMMAND_EXECUTE_PROBLEM = "Command execute problem";
 

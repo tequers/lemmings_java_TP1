@@ -42,7 +42,7 @@ public class Wall extends GameObject {
 		
 	
 		String[] words = line.trim().split("\\s+");
-		Position pos = super.checkPositionFrom(words[0]);
+		Position pos = super.checkPositionFrom(words[0], line);
 		if (super.checkObjectNameFrom(words[1])) {
 			return new Wall(game, pos);
 		}

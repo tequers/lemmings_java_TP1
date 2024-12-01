@@ -1,6 +1,6 @@
 package tp1.logic.gameobjects;
 
-import tp1.exceptions.CommandParseException;
+
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.exceptions.RoleParseException;
@@ -159,11 +159,11 @@ public class Lemming extends GameObject {
 	public GameObject parse(String line, GameWorld game) 
 			throws ObjectParseException, OffBoardException {
 		String[] words = line.trim().split("\\s+");
-		Position pos = super.checkPositionFrom(words[0]);
+		Position pos = super.checkPositionFrom(words[0], line);
 		if (super.checkObjectNameFrom(words[1])) {
 			  
-			Direction dir = Lemming.getLemmingDirectionFrom(words[2]);
-			int height = Lemming.getLemmingHeigthFrom(words[3]);
+			Direction dir = Lemming.getLemmingDirectionFrom(words[2], line);
+			int height = Lemming.getLemmingHeigthFrom(words[3], line);
 			try {
 				Lemming lemming = new Lemming(game, pos, 
 						LemmingRoleFactory.parse(words[4]));
@@ -172,19 +172,15 @@ public class Lemming extends GameObject {
 				lemming.setCurrentFall(height);
 				return lemming;
 			} catch (RoleParseException rpe) {
-				throw new ObjectParseException(); //TODO: RELLENAR info
+				throw new ObjectParseException(Messages.INVALID_ROLE.formatted(line)); //TODO: RELLENAR info
 			}
-			
-			
 		}
-		
-	
 		return null;
 		
 	}
 	
 
-	private static Direction getLemmingDirectionFrom(String direction)
+	private static Direction getLemmingDirectionFrom(String direction, String line)
 			throws ObjectParseException {
 		switch(direction.toUpperCase()) {
 			case("RIGHT"):
@@ -192,16 +188,16 @@ public class Lemming extends GameObject {
 			case("LEFT"):
 				return Direction.RIGHT;
 		}
-		throw new ObjectParseException(Messages.INVALID_DIRECTION.formatted(direction)); //TODO: RELLENAR
+		throw new ObjectParseException(Messages.INVALID_DIRECTION.formatted(line)); //TODO: RELLENAR
 		
 	}
-	private static int getLemmingHeigthFrom(String height)
+	private static int getLemmingHeigthFrom(String height, String line)
 			throws ObjectParseException {
 		try {
 			int h = Integer.valueOf(height); 
 			return h;
 		} catch(NumberFormatException e) {
-			throw new ObjectParseException();//TODO: RELLENAR
+			throw new ObjectParseException(Messages.INVALID_HEIGHT.formatted(line));//TODO: RELLENAR
 		}
 		
 		
