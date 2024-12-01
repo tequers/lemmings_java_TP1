@@ -7,23 +7,22 @@ import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
 
 public interface LemmingRole {
-	
-		public void start( Lemming lemming );
-	    public void play( Lemming lemming );
-	    
-	    public String getIcon( Lemming lemming );
-		public String getName();
-		public String getSymbol();
-		public String getHelp();
-		public String getHelpName();
-		public  String helpText();
-		
-		public boolean receiveInteraction(GameItem other, Lemming lemming);
-		public boolean interactWith(Lemming receiver, Lemming lemming);
-		public boolean interactWith(Wall wall, Lemming lemming);
-		public boolean interactWith(ExitDoor door, Lemming lemming);
-		
-		public LemmingRole parse(String input);
-		
+
+	public void start(Lemming lemming);
+	public void play(Lemming lemming);
+
+	public String getIcon(Lemming lemming);
+	public String getName();
+	public String getSymbol();
+	public String getHelp();
+	public String getHelpName();
+	public String helpText();
+
+	public boolean receiveInteraction(GameItem other, Lemming lemming);
+	public boolean interactWith(Lemming receiver, Lemming lemming);
+	public boolean interactWith(Wall wall, Lemming lemming);
+	public boolean interactWith(ExitDoor door, Lemming lemming);
+
+	public LemmingRole parse(String input);
+
 }
- 

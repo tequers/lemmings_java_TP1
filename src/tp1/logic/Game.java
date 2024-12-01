@@ -122,7 +122,7 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	
 	@Override
 	public void reset(int nLevel) throws GameLoadException	  {
-		if (this.nameConfig != null) {
+		if (this.nameConfig != null) { //TODO: se podría poner como un try
 			this.load(this.nameConfig); 
 		} else 
 			init(nLevel);
@@ -281,7 +281,6 @@ public class Game implements GameStatus, GameModel, GameWorld{
 	}
 	
 	public void save(String fileName) throws GameModelException {
-
 		try ( BufferedWriter outChars = 
 				new BufferedWriter(new FileWriter(fileName))) {
 					outChars.write(this.toString());

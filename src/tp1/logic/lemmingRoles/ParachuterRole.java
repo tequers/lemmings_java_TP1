@@ -12,20 +12,21 @@ public class ParachuterRole extends AbstractRole {
 	private static final String HELP_NAME = Messages.PARACHUTER_ROL_HELP_NAME;
 	
 	public ParachuterRole() {
-		super(NAME,HELP,ICON,SYMBOL,HELP_NAME);
+		super(NAME, HELP, ICON, SYMBOL, HELP_NAME);
 	}
-	
-	//LemmingRole methods
+
+	// LemmingRole methods
 	@Override
-	public void start( Lemming lemming ) {
+	public void start(Lemming lemming) {
 		lemming.setCurrentFall(0);
 	}
-	
+
 	@Override
-    public void play( Lemming lemming ) {
-    	if (lemming.isInAir()) {
-    		lemming.fall();
-    	} else lemming.disableRole();
-    }
-    
+	public void play(Lemming lemming) {
+		if (lemming.isInAir()) {
+			lemming.fall();
+		} else
+			lemming.disableRole();
+	}
+
 }

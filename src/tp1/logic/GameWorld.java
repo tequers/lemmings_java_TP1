@@ -11,7 +11,6 @@ public interface GameWorld {
 	public boolean isInAir(Position pos);
 	public boolean isSolid(Position pos);	
 	public static boolean dentroDelMapa(Position pos) {
-		//TODO: cambiar a estática
 		int c = pos.getCol();
 		int r = pos.getRow();
 		return c < Game.DIM_X && c >= 0 && r < Game.DIM_Y && r >= 0;
