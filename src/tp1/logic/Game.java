@@ -260,7 +260,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void save(String fileName) throws GameModelException {
 		try (BufferedWriter outChars = new BufferedWriter(new FileWriter(fileName))) {
 			outChars.write(this.toString());
-			System.out.println(Messages.FILE_SAVED.formatted(fileName));
 
 		} catch (IOException e) {
 			throw new GameModelException(); // TODO

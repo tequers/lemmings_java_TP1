@@ -1,4 +1,4 @@
-Lemmings 2.2
+Lemmings 3.0
 
 Number of cycles: 0
 Lemmings in board: 4

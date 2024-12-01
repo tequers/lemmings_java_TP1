@@ -94,4 +94,9 @@ public abstract class AbstractRole implements LemmingRole {
 	private boolean matchCommandName(String input) {
 		return this.getSymbol().equalsIgnoreCase(input) || this.getName().equalsIgnoreCase(input);
 	}
+	
+	@Override
+	public String toString() {
+		return this.NAME;
+	}
 }

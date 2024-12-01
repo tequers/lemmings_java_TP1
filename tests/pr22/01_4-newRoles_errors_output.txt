@@ -1,4 +1,4 @@
-Lemmings 2.2
+Lemmings 3.0
 
 Number of cycles: 0
 Lemmings in board: 4
@@ -22,31 +22,33 @@ Lemmings exit door: 0 ┃2
 
 Command > [DEBUG] Executing: setRole Walker I 2 33
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: Incorrect parameter number
 
 Command > [DEBUG] Executing: setRole Patata I 2
 
-[ERROR] Error: Unknown role
+[ERROR] Error: Unknown role: Patata
 
 Command > [DEBUG] Executing: sEtROle Walker I 1
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: No lemming in position (8,0) admits role Walker
 
 Command > [DEBUG] Executing: sEtROle w I 1
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: No lemming in position (8,0) admits role Walker
 
 Command > [DEBUG] Executing: setRole Parachuter A 1
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: No lemming in position (0,0) admits role Parachuter
 
 Command > [DEBUG] Executing: setRole Parachuter A 100
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: Command execute problem
+
+[ERROR] Error: Position (0,99) is off board
 
 Command > [DEBUG] Executing: setRole Parachu A 10
 
-[ERROR] Error: Unknown role
+[ERROR] Error: Unknown role: Parachu
 
 Command > [DEBUG] Executing: sEtROle doWnCaVer A 10
 
@@ -94,7 +96,7 @@ Lemmings exit door: 0 ┃2
 
 Command > [DEBUG] Executing: setRole Parachuter C 10
 
-[ERROR] Error: SetRoleCommand error (Incorrect position or no object in that position admits that role)
+[ERROR] Error: No lemming in position (2,9) admits role Parachuter
 
 Command > [DEBUG] Executing: sr walKEr C 10
 
