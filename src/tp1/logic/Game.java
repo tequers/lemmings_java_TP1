@@ -136,11 +136,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 			return this.container.setRole(pos, role);
 		}
 
-		// String offBoard = "Position " + "(" + pos.getRow() + "," + pos.getCol() + ")
-		// is off board";
-		throw new OffBoardException("Position " + // TODO:
-				(Messages.POSITION.formatted(pos.getRow(), pos.getCol())) + " off the board");
-		// TODO: revisar que haya espacio
+		throw new OffBoardException(Messages.POSITION_IS_OFF_BOARD.formatted(pos.getRow(), pos.getCol()));
 
 	}
 
@@ -176,15 +172,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public boolean isSolid(Position pos) {
 		return GameWorld.dentroDelMapa(pos) && this.container.isSolid(pos);
 	}
-
-	/*
-	 * TODO: QUITAR, SE VOLVIÓ ESTÁTICA
-	 * 
-	 * @Override public boolean dentroDelMapa(Position pos) { int c = pos.getCol();
-	 * int r = pos.getRow(); return c < DIM_X && c >= 0 && r < DIM_Y && r >= 0;
-	 * 
-	 * }
-	 */
 
 	@Override
 	public boolean receiveInteractionsFrom(GameItem obj) {
@@ -273,6 +260,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void save(String fileName) throws GameModelException {
 		try (BufferedWriter outChars = new BufferedWriter(new FileWriter(fileName))) {
 			outChars.write(this.toString());
+			System.out.println(Messages.FILE_SAVED.formatted(fileName));
 
 		} catch (IOException e) {
 			throw new GameModelException(); // TODO

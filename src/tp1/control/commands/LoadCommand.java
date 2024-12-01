@@ -25,7 +25,6 @@ public class LoadCommand extends Command{
 			throws CommandExecuteException {
 		try {
 			game.load(this.fileName);
-			 game.update();
 	         view.showGame();
 		} catch (GameLoadException gle) {
 			throw new CommandExecuteException(Messages.INVALID_FILE_CONFIG.formatted(fileName), gle); //TODO: RELLENAR

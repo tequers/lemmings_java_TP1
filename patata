@@ -1,0 +1,25 @@
+2 6 0 0 2
+(5,4) ExitDoor
+(3,4) Lemming RIGHT 0 Walker
+(0,8) Lemming LEFT 0 Walker
+(8,2) Lemming RIGHT 0 Walker
+(3,5) Lemming RIGHT 0 Walker
+(2,6) Lemming RIGHT 2 Walker
+(2,6) Lemming RIGHT 0 tp1.logic.lemmingRoles.ParachuterRole@2e5d6d97
+(4,2) Wall
+(4,3) Wall
+(4,4) Wall
+(9,0) Wall
+(9,1) Wall
+(9,8) Wall
+(9,9) Wall
+(1,8) Wall
+(1,9) Wall
+(8,8) Wall
+(6,4) Wall
+(6,5) Wall
+(6,6) Wall
+(5,3) Wall
+(6,3) MetalWall
+(5,7) Wall
+(6,7) Wall

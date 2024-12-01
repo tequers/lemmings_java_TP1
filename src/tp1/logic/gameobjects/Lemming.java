@@ -187,8 +187,12 @@ public class Lemming extends GameObject {
 			return Direction.RIGHT;
 		case ("LEFT"):
 			return Direction.RIGHT;
+		case ("UP"):
+		case ("DOWN"):
+			throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION.formatted(line)); 
+			
 		}
-		throw new ObjectParseException(Messages.INVALID_DIRECTION.formatted(line)); // TODO: RELLENAR
+		throw new ObjectParseException(Messages.UNKNOWN_OBJECT_DIRECTION.formatted(line)); // TODO: RELLENAR
 
 	}
 

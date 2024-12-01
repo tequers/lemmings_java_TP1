@@ -75,13 +75,18 @@ public class SetRoleCommand extends Command{
 			if (this.matchCommandName(commandWords[0])) {
 
 				// this.roleInput = commandWords;
-				String row = commandWords[2];
-				if (commandWords.length == 4 && row.length() == 1) {
-					
-					this.role = LemmingRoleFactory.parse(commandWords[1]); // Obtenemos el rol
-					col = Integer.valueOf(commandWords[3]); // TODO
-					this.pos =  new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
-					return this;
+			 //TODO: CASO Ammdd 8
+				if (commandWords.length == 4) {
+					String row = commandWords[2];
+					if (row.length() == 1) {
+						col = Integer.valueOf(commandWords[3]); 
+						this.pos = new Position(col - 1, letterToIndex(row.charAt(0)));
+						this.role = LemmingRoleFactory.parse(commandWords[1]); // Obtenemos el rol
+						return this;
+						
+					}
+					throw new CommandParseException(Messages.INVALID_POSITION.formatted
+							(Messages.POSITION.formatted(commandWords[2], commandWords[3])));
 				}
 				throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 				// if (row.length() != 1) throw new NumberFormatException();
@@ -98,35 +103,9 @@ public class SetRoleCommand extends Command{
 		return null;
 	}
 	
-	//Other methods
-	private boolean rowIsValid(String letter) {
-		if (letter.length() != 1) {
-            return false;
-        }
-		char ch = letter.toUpperCase().charAt(0);
-		return ch >= 'A' && ch <= 'J';
-	}
-	
-	private boolean colIsValid(int col) {
-		return col >= 1 && col <= Game.DIM_X;
-	}
-	
 	private int letterToIndex(char letter) {
 		return letter - 'A'; // A -> 0, B -> 1 ...
 	}
-	
-	//TODO: se va a poder quitar probablemente
-	private Position posIn(String row, int col) {
-		if (rowIsValid(row) && colIsValid(col)) {
-			return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
-		}
-		//return null;
-		throw new NullPointerException();
-	}
-	
-	//TODO:
-	public Position positIn(String row, int col) {
-		return new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
-	}
+
 	
 }

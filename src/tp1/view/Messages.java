@@ -60,11 +60,12 @@ public class Messages {
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
 	//Errores de roles
 	// Errores de parseo de otras cosas:
-	public static final String INVALID_POSITION = "Invalid position: \"%s\"";
+	public static final String INVALID_POSITION = "Invalid object position: \"%s\"";
 	public static final String INVALID_COMMAND = "Invalid command: %s";
-	public static final String INVALID_DIRECTION = "Invalid direction: \"%s\"";
+	public static final String INVALID_LEMMING_DIRECTION = "Invalid lemming direction: \"%s\"";
+	public static final String UNKNOWN_OBJECT_DIRECTION = "Unknown object direction: \"%s\"";
 	public static final String INVALID_HEIGHT = "Invalid height: \"%s\"";
-	public static final String INVALID_GAME_STATUS = "Invalid game status: \"%s\"";
+	public static final String INVALID_GAME_STATUS = "Invalid game status \"%s\"";
 	public static final String INVALID_INIT_CONF = "Invalid init configuration because %s";
 	public static final String INVALID_ROLE = "Invalid lemming role: \"%s\"";
 	public static final String ERROR_INVALID_INIT_CONF = "Unknown invalid init configuration";
@@ -133,7 +134,7 @@ public class Messages {
 	public static final String COMMAND_SAVE_COMMAND_NAME = "save";
 	public static final String COMMAND_SAVE_COMMAND_SHORTCUT = "s";
 	public static final String COMMAND_SAVE_COMMAND_DETAILS = "[s]ave <fileName>";
-	public static final String COMMAND_SAVE_COMMAND_HELP = "save the current configuration to text file <fileName>";
+	public static final String COMMAND_SAVE_COMMAND_HELP = "save the actual configuration to text file <fileName>";
 
 	//Roles
 	public static final String WALKER_ROL_SYMBOL = "W";
@@ -175,5 +176,6 @@ public class Messages {
 	public static final String EXIT_DOOR_SHORTCUT = "ED";
 	
 //3.0 
-	
-}
+	public static final String POSITION_IS_OFF_BOARD = "Position (%s,%s) is off board";
+	public static final String FILE_SAVED = "File \"%s\" correctly saved%n";
+} 
