@@ -70,13 +70,12 @@ public class SetRoleCommand extends Command{
 	
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException {
-		String row = null;
 		int col = -1;
 		try {
 			if (this.matchCommandName(commandWords[0])) {
 
 				// this.roleInput = commandWords;
-				row = commandWords[2];
+				String row = commandWords[2];
 				if (commandWords.length == 4 && row.length() == 1) {
 					
 					this.role = LemmingRoleFactory.parse(commandWords[1]); // Obtenemos el rol
@@ -89,7 +88,8 @@ public class SetRoleCommand extends Command{
 				// Position pos = posIn(row, col); //Puede
 			}
 		} catch (NumberFormatException e) {
-			throw new CommandParseException(Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(row, col)));
+			throw new CommandParseException(Messages.INVALID_POSITION.formatted
+					(Messages.POSITION.formatted(commandWords[2], commandWords[3])));
 		} catch (RoleParseException rpe) {
 			// Rol desconocido
 			// view.showError(rpe.getMessage());
