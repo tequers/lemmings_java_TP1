@@ -19,8 +19,6 @@ public class SetRoleCommand extends Command{
 	 private static final String DETAILS = Messages.COMMAND_SET_ROLE_COMMAND_DETAILS;
 	 private static final String HELP = Messages.COMMAND_SET_ROLE_COMMAND_HELP;
 	    
-	 
-	private String[] roleInput;
 	//
 	private Position pos;
 	private LemmingRole role;
@@ -47,7 +45,7 @@ public class SetRoleCommand extends Command{
 	            view.showGame();
 	        } 
 	        else {
-	        throw new CommandExecuteException(
+	        throw new CommandExecuteException( //TODO: cambiar
 		            "No lemming in position " +
 		            Messages.POSITION.formatted(pos.getRow(), pos.getCol()) +
 		            " admits role " + name
@@ -78,10 +76,11 @@ public class SetRoleCommand extends Command{
 			if (this.matchCommandName(commandWords[0])) {
 
 				// this.roleInput = commandWords;
+				row = commandWords[2];
 				if (commandWords.length == 4 && row.length() == 1) {
-					row = commandWords[2];
-					this.role = LemmingRoleFactory.parse(this.roleInput[1]); // Obtenemos el rol
-					col = Integer.valueOf(this.roleInput[3]); // TODO
+					
+					this.role = LemmingRoleFactory.parse(commandWords[1]); // Obtenemos el rol
+					col = Integer.valueOf(commandWords[3]); // TODO
 					this.pos =  new Position(col-1,letterToIndex(row.toUpperCase().charAt(0)));
 					return this;
 				}

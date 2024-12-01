@@ -19,5 +19,4 @@ public interface GameModel {
 	
 	public int getLevel();
 	
-	
 }
