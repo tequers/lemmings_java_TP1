@@ -28,6 +28,7 @@ public class GameObjectContainer {
 	}
 	
 	public void update() {
+		
 		//Actualizar los elementos del array
 		for (GameObject o : this.objects) {
 			o.update();
@@ -99,4 +100,12 @@ public class GameObjectContainer {
 		return false;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		for (GameObject go: objects) {
+			str.append(go.toString() + "\n");
+		}
+		return str.toString();
+	}
 }

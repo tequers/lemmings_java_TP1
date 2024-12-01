@@ -25,6 +25,7 @@ public abstract class GameObject implements GameItem {
 		this.game = game;
 		this.name = name;
 		this.shortcut = shortcut;
+		
 	}
 	
 	//Abstract methods
@@ -98,6 +99,7 @@ public abstract class GameObject implements GameItem {
 	}
 	
 	
+	
 	public boolean checkObjectNameFrom(String nombreObjeto)  {
 		if (nombreObjeto.equalsIgnoreCase(this.name) ||
 				nombreObjeto.equalsIgnoreCase(this.shortcut) ) {
@@ -108,5 +110,13 @@ public abstract class GameObject implements GameItem {
 		
 	}
 	
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("(" + this.pos.getRow() + "," + this.pos.getCol() + ") ");
+		str.append(this.name);
+		return str.toString();
+	}
 
 }

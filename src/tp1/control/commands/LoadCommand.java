@@ -22,7 +22,7 @@ public class LoadCommand extends Command{
 		super(NAME,SHORTCUT,DETAILS,HELP);
 	}
 	
-	
+	@Override
 	public void execute(GameModel game, GameView view) 
 			throws CommandExecuteException {
 		try {
@@ -34,6 +34,7 @@ public class LoadCommand extends Command{
 		}
 	}
 	
+	@Override
 	public Command parse(String[] commandWords) 
 			throws CommandParseException {
 		if(commandWords.length == 2 &&

@@ -8,10 +8,12 @@ import java.io.IOException;
 
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.GameModelException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.ExitDoor;
 
 import tp1.logic.gameobjects.GameItem;
+import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.MetalWall;
 import tp1.logic.gameobjects.Wall;
@@ -264,6 +266,30 @@ public class Game implements GameStatus, GameModel, GameWorld{
 				container.setlemmingsInBoard(4);
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(this.nCycle + " ");
+		str.append(this.nLemmingsInBoard  + " ");
+		str.append(this.nLemmingsDead +  " ");
+		str.append(this.nLemmingsExit + " ");
+		str.append(this.nLemmingsToWin + "\n");
+		str.append(this.container.toString());
+		return str.toString();
+	}
+	
+	public void save(String fileName) throws GameModelException {
+
+		try ( BufferedWriter outChars = 
+				new BufferedWriter(new FileWriter(fileName))) {
+					outChars.write(this.toString());
+		
+		} catch (IOException e) {
+			throw new GameModelException() ; //TODO
+		}
+
 	}
 	
 }

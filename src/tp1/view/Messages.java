@@ -128,6 +128,12 @@ public class Messages {
 	public static final String COMMAND_LOAD_COMMAND_SHORTCUT = "l";
 	public static final String COMMAND_LOAD_COMMAND_DETAILS = "[l]oad <fileName>";
 	public static final String COMMAND_LOAD_COMMAND_HELP = "load the game configuration from text file <fileName>";
+	
+	//SAVE COMMAND
+	public static final String COMMAND_SAVE_COMMAND_NAME = "save";
+	public static final String COMMAND_SAVE_COMMAND_SHORTCUT = "s";
+	public static final String COMMAND_SAVE_COMMAND_DETAILS = "[s]ave <fileName>";
+	public static final String COMMAND_SAVE_COMMAND_HELP = "save the current configuration to text file <fileName>";
 
 	//Roles
 	public static final String WALKER_ROL_SYMBOL = "W";

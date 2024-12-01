@@ -31,6 +31,7 @@ public class Lemming extends GameObject {
 		this.currentFall = 0;
 		this.dir = Direction.RIGHT;
 		this.wasFalling = false;
+	
 	}
 	
 	
@@ -206,6 +207,16 @@ public class Lemming extends GameObject {
 	//3.0
 	public void setDir(Direction dir) {
 		this.dir = dir;
-}
-    
+	}
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(super.toString() + " ");
+		str.append(this.dir.name() + " ");
+		str.append(this.currentFall+ " ");
+		str.append(this.role.getName());
+		return str.toString();
+	}
 }
