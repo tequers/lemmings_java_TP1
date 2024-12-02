@@ -18,10 +18,11 @@ public class Lemming extends GameObject {
 	private final int fall = 3;
 	private int currentFall;
 	private boolean wasFalling;
-	
+
 	private final static String name = Messages.LEMMING_NAME;
 	private final static String shortcut = Messages.LEMMING_SHORTCUT;
-
+	private boolean isInteracting;
+	
 	public Lemming(GameWorld game, Position pos, LemmingRole role) {
 		super(game, pos, name, shortcut);
 		this.role = role;
@@ -77,10 +78,8 @@ public class Lemming extends GameObject {
 	}
 
 	public void walkOrFall() {
-		if (this.game.receiveInteractionsFrom(this)) {
-			this.setLife(false);
-			this.game.lemmingArrived();
-		} else { // Fall
+		
+		 // Fall
 			if (this.isInAir()) {
 				this.fall();
 				this.currentFall++;
@@ -95,7 +94,7 @@ public class Lemming extends GameObject {
 				} else
 					this.dies();
 			}
-		}
+		
 	}
 
 	// Parachuter
@@ -106,12 +105,12 @@ public class Lemming extends GameObject {
 	// GameObject methods
 	@Override
 	public void update() {
-		if (this.game.receiveInteractionsFrom(this)) {
-			this.role.setIsInteracting(true);
-		}
-		if (isAlive())
+		if (isAlive()) {
+			if (this.game.receiveInteractionsFrom(this)) this.isInteracting = true;
+			else this.isInteracting = false;
 			role.play(this);
-		
+		}
+
 	}
 
 	@Override
@@ -144,7 +143,10 @@ public class Lemming extends GameObject {
 	public GameWorld getGame() {
 		return this.game;
 	}
-
+	
+	public boolean getIsInteracting() {
+		return this.isInteracting;
+	}
 	// GameItem methods
 	@Override
 	public boolean interactWith(Wall obj) {
@@ -158,10 +160,14 @@ public class Lemming extends GameObject {
 
 	@Override
 	public boolean interactWith(ExitDoor obj) {
-		return obj.isInPosition(this.pos);
+		if (obj.isInPosition(this.pos) ) {
+			this.exitsDoor();
+			return true;
+		}
+		return  false;
 	}
 
-	//3.0
+	// 3.0
 	@Override
 	public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException {
 		String[] words = line.trim().split("\\s+");
@@ -171,14 +177,13 @@ public class Lemming extends GameObject {
 			Direction dir = Lemming.getLemmingDirectionFrom(words[2], line);
 			int height = Lemming.getLemmingHeigthFrom(words[3], line);
 			try {
-				Lemming lemming = new Lemming(game, pos, 
-						LemmingRoleFactory.parse(words[4]));
+				Lemming lemming = new Lemming(game, pos, LemmingRoleFactory.parse(words[4]));
 				lemming.setDir(dir);
 				lemming.setCurrentFall(height);
 				return lemming;
-				
+
 			} catch (RoleParseException rpe) {
-				throw new ObjectParseException(Messages.INVALID_ROLE.formatted(line)); 
+				throw new ObjectParseException(Messages.INVALID_ROLE.formatted(line));
 			}
 		}
 		return null;
@@ -193,10 +198,10 @@ public class Lemming extends GameObject {
 			return Direction.RIGHT;
 		case ("UP"):
 		case ("DOWN"):
-			throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION.formatted(line)); 
-			
+			throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION.formatted(line));
+
 		}
-		throw new ObjectParseException(Messages.UNKNOWN_OBJECT_DIRECTION.formatted(line)); 
+		throw new ObjectParseException(Messages.UNKNOWN_OBJECT_DIRECTION.formatted(line));
 
 	}
 
@@ -222,5 +227,11 @@ public class Lemming extends GameObject {
 		str.append(this.currentFall + " ");
 		str.append(this.role.toString());
 		return str.toString();
+	}
+	
+	
+	public void exitsDoor() {
+		this.setLife(false);
+		this.game.lemmingArrived();
 	}
 }

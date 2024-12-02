@@ -34,12 +34,14 @@ public class GameObjectContainer {
 			o.update();
 		}
 		//Eliminar los elementos del array que correspondan
-		for (int i = objects.size() - 1; i >= 0; i--) {
+		for (int i = 0; i < objects.size();++i) {
 		    if (!objects.get(i).isAlive()) {
 		    	this.cont--;
 		    	objects.remove(i);
 		    }
 		}
+		
+		
 	}
 	
 	public String positionToString(int col, int row) {
@@ -65,12 +67,13 @@ public class GameObjectContainer {
 	
 	//Interactions
 	public boolean receiveInteractionsFrom(GameItem obj) {
+		boolean received = false;
 		for (GameItem gi: objects) {
 			if (gi.receiveInteraction(obj)) {
-				return true;
+				received = true;
 			}
 		}
-		return false;
+		return received;
 	}
 		
 	//Getters
@@ -87,6 +90,9 @@ public class GameObjectContainer {
 		this.nLemmingsInBoard = nLemmings;
 	}
 	
+	public void setCont(int cont) {
+		this.cont = cont;
+	}
 	//Roles
 	public boolean setRole(Position pos, LemmingRole role) { 
 		int i=0;
@@ -107,5 +113,15 @@ public class GameObjectContainer {
 			str.append(go.toString() + "\n");
 		}
 		return str.toString();
+	}
+	
+	public GameObjectContainer copy() {
+		GameObjectContainer goc = new GameObjectContainer();
+		goc.setlemmingsInBoard(nLemmingsInBoard);
+		goc.setCont(this.cont);
+		for (GameObject go: objects) {
+			goc.add(go);
+		}
+		return goc;
 	}
 }

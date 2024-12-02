@@ -1,7 +1,7 @@
 package tp1.logic.lemmingRoles;
 
 import tp1.logic.Direction;
-
+import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
 import tp1.view.Messages;
@@ -33,7 +33,9 @@ public class DownCaverRole extends AbstractRole {
 	@Override
 	public void start(Lemming lemming) {
 		//this.hasCaved = false;
-	};
+		//if (lemming.getIsInteracting()) lemming.disableRole();
+		//if (lemming.setRole(null))))
+	}
 
 	@Override
 	public void play(Lemming lemming) {
@@ -42,9 +44,8 @@ public class DownCaverRole extends AbstractRole {
 		if (!this.hasCaved)
 			lemming.disableRole();
 		*/
-		if (this.getIsInteracting()) {
+		if (lemming.getIsInteracting()) {
 			lemming.fall();
-			this.setIsInteracting(false);
 		} else
 			lemming.disableRole();
 	}
@@ -57,5 +58,6 @@ public class DownCaverRole extends AbstractRole {
 		} else
 			return false;
 	}
-
+	
+	
 }

@@ -83,8 +83,6 @@ public class FileGameConfiguration implements GameConfiguration {
 
 	// game objects
 	public GameObjectContainer getGameObjects() {
-		GameObjectContainer goc = new GameObjectContainer();
-		goc = this.container;
-		return goc;
+		return this.container.copy();
 	}
 }

@@ -189,14 +189,16 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.nLemmingsDead = 0;
 		// AÑADIR CONTAINER
 		container = new GameObjectContainer();
-		// AÑADIR EXIT DOOR
-		container.add(new ExitDoor(this, new Position(4, 5)));
+		
 		// AÑADIR LEMMINGS
 		initLemmings();
 		// AÑADIR WALLS
 		initWalls();
 		// INICIALIZAR LEMMINGS IN BOARD
 		this.nLemmingsInBoard = container.getLemmingsInBoard();
+		// AÑADIR EXIT DOOR
+				container.add(new ExitDoor(this, new Position(4, 5)));
+		
 	}
 
 	private void initWalls() {

@@ -17,7 +17,6 @@ public interface LemmingRole {
 	public String getHelp();
 	public String getHelpName();
 	public String helpText();
-	public void setIsInteracting(boolean isInteracting);
 	
 	public boolean receiveInteraction(GameItem other, Lemming lemming);
 	public boolean interactWith(Lemming receiver, Lemming lemming);
