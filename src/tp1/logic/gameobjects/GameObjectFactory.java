@@ -23,6 +23,6 @@ public class GameObjectFactory {
 				return gObj; 
 			}
 		}
-		throw new ObjectParseException(Messages.UNKNOWN_GAME_OBJECT.formatted(line)); // TODO: RELLENAR MENSAJE
+		throw new ObjectParseException(Messages.UNKNOWN_GAME_OBJECT.formatted(line)); 
 	}
 }

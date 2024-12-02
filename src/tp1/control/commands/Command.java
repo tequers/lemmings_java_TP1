@@ -1,8 +1,8 @@
 package tp1.control.commands;
 
 import tp1.exceptions.CommandExecuteException;
+
 import tp1.exceptions.CommandParseException;
-import tp1.exceptions.OffBoardException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;

@@ -2,11 +2,11 @@ package tp1.control;
 
 import tp1.control.commands.Command;
 
+
 import tp1.control.commands.CommandGenerator;
 import tp1.exceptions.CommandException;
 import tp1.logic.Game;
 import tp1.view.GameView;
-import tp1.view.Messages;
 
 /**
  *  Accepts user input and coordinates the game execution logic
@@ -31,13 +31,11 @@ public class Controller {
 		view.showWelcome();
 		view.showGame();
 		while ( !game.isFinished()) {
-			//
+			
 			try { 
 				words = view.getPrompt();
 				Command command = CommandGenerator.parse(words);
-				//if (command != null) {
-					command.execute(game, view);
-				//}
+				command.execute(game, view);
 			}
 	 		catch (CommandException e) {
 	 			view.showError(e.getMessage());
@@ -45,15 +43,7 @@ public class Controller {
 	 			if (cause != null) 
 	 			    view.showError(cause.getMessage());
 	 		}
-			/*
-			words = view.getPrompt();
-			Command command = CommandGenerator.parse(words);
-			if (command != null) {
-				command.execute(game, view);
-			}
-			else 
-				view.showError(Messages.UNKNOWN_COMMAND.formatted(words[0]));
-	*/
+			
 		}
 		view.showEndMessage();
 	}

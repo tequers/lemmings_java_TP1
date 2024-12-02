@@ -106,8 +106,12 @@ public class Lemming extends GameObject {
 	// GameObject methods
 	@Override
 	public void update() {
+		if (this.game.receiveInteractionsFrom(this)) {
+			this.role.setIsInteracting(true);
+		}
 		if (isAlive())
 			role.play(this);
+		
 	}
 
 	@Override
@@ -174,7 +178,7 @@ public class Lemming extends GameObject {
 				return lemming;
 				
 			} catch (RoleParseException rpe) {
-				throw new ObjectParseException(Messages.INVALID_ROLE.formatted(line)); // TODO: RELLENAR info
+				throw new ObjectParseException(Messages.INVALID_ROLE.formatted(line)); 
 			}
 		}
 		return null;
@@ -192,7 +196,7 @@ public class Lemming extends GameObject {
 			throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION.formatted(line)); 
 			
 		}
-		throw new ObjectParseException(Messages.UNKNOWN_OBJECT_DIRECTION.formatted(line)); // TODO: RELLENAR
+		throw new ObjectParseException(Messages.UNKNOWN_OBJECT_DIRECTION.formatted(line)); 
 
 	}
 
@@ -201,7 +205,7 @@ public class Lemming extends GameObject {
 			int h = Integer.valueOf(height);
 			return h;
 		} catch (NumberFormatException e) {
-			throw new ObjectParseException(Messages.INVALID_HEIGHT.formatted(line));// TODO: RELLENAR
+			throw new ObjectParseException(Messages.INVALID_HEIGHT.formatted(line));
 		}
 
 	}

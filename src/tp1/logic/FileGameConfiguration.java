@@ -21,8 +21,8 @@ public class FileGameConfiguration implements GameConfiguration {
 	private int nLemmingsDead;
 
 	public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
-		// Attempt to read from the file and process it
-		String line = null; // TODO: REVISAR
+		
+		String line = null; 
 		try (BufferedReader inChars = new BufferedReader(new FileReader(fileName))) {
 
 			line = inChars.readLine();
@@ -44,12 +44,12 @@ public class FileGameConfiguration implements GameConfiguration {
 			} else
 				throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(line));
 		} catch (NumberFormatException e) {
-			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); // TODO: RELLENAR
+			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); 
 		} catch (ObjectParseException ope) {
-			throw new GameLoadException(ope.getMessage());// Messages.UNKNOWN_GAME_OBJECT.formatted(line)); //TODO:
+			throw new GameLoadException(ope.getMessage());
 		} catch (OffBoardException obe) {
-			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); // TODO: RELLENAR
-		} catch (IOException fnf) {
+			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); 
+		} catch (IOException e) {
 			throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
 		}
 

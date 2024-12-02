@@ -9,7 +9,6 @@ import tp1.view.Messages;
 
 public class LoadCommand extends Command{
 	
-	
 	private static final String NAME = Messages.COMMAND_LOAD_COMMAND_NAME;
 	private static final String SHORTCUT = Messages.COMMAND_LOAD_COMMAND_SHORTCUT;
 	private static final String DETAILS = Messages.COMMAND_LOAD_COMMAND_DETAILS;
@@ -27,7 +26,7 @@ public class LoadCommand extends Command{
 			game.load(this.fileName);
 	         view.showGame();
 		} catch (GameLoadException gle) {
-			throw new CommandExecuteException(Messages.INVALID_FILE_CONFIG.formatted(fileName), gle); //TODO: RELLENAR
+			throw new CommandExecuteException(Messages.INVALID_FILE_CONFIG.formatted(fileName), gle); 
 		}
 	}
 	

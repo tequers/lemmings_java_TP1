@@ -13,7 +13,9 @@ public abstract class AbstractRole implements LemmingRole {
 	private final String ICON;
 	private final String SYMBOL;
 	private final String HELP_NAME;
-
+	//
+	private boolean isInteracting;
+	//
 	public AbstractRole(String name, String help, 
 			String icon, String symbol, String help_name) {
 		this.NAME = name;
@@ -21,6 +23,7 @@ public abstract class AbstractRole implements LemmingRole {
 		this.ICON = icon;
 		this.SYMBOL = symbol;
 		this.HELP_NAME = help_name;
+		this.isInteracting = false;
 	}
 
 	// LemmingRole methods
@@ -98,5 +101,13 @@ public abstract class AbstractRole implements LemmingRole {
 	@Override
 	public String toString() {
 		return this.NAME;
+	}
+	
+	public  void setIsInteracting(boolean isInteracting) {
+		this.isInteracting = isInteracting;
+	}
+	
+	public boolean getIsInteracting() {
+		return this.isInteracting;
 	}
 }

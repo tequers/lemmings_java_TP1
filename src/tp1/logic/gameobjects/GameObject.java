@@ -81,7 +81,7 @@ public abstract class GameObject implements GameItem {
 			try {
 				int col = Integer.valueOf(p[0]);
 				int row = Integer.valueOf(p[1]);
-				Position posit = new Position(row, col); // TODO: revisar que excepciones puede lanzar
+				Position posit = new Position(row, col);
 				if (GameWorld.dentroDelMapa(posit)) {
 					return posit;
 				}

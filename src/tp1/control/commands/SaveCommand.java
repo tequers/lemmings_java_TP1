@@ -27,7 +27,7 @@ public class SaveCommand extends Command{
 			game.save(fileName);
 			view.showMessage(Messages.FILE_SAVED.formatted(fileName));
 		} catch (GameModelException e) {
-			throw new CommandExecuteException(); //TODO: 
+			throw new CommandExecuteException(); 
 		}
 	}
 	

@@ -57,7 +57,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.nameConfig = fileName;
 	}
 
-	// TODO: load
 // GameStatus methods
 	@Override
 	public int getCycle() {
@@ -113,10 +112,12 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset(int nLevel) throws GameLoadException {
-		if (this.nameConfig != null) { // TODO: se podría poner como un try
+		try {
 			this.load(this.nameConfig);
-		} else
+		} catch (NullPointerException npe) {
 			init(nLevel);
+		}
+
 	}
 
 	@Override
@@ -262,7 +263,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 			outChars.write(this.toString());
 
 		} catch (IOException e) {
-			throw new GameModelException(); // TODO
+			throw new GameModelException(); 
 		}
 
 	}
