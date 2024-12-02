@@ -22,7 +22,7 @@ public class Lemming extends GameObject {
 	private final static String name = Messages.LEMMING_NAME;
 	private final static String shortcut = Messages.LEMMING_SHORTCUT;
 	private boolean isInteracting;
-	
+
 	public Lemming(GameWorld game, Position pos, LemmingRole role) {
 		super(game, pos, name, shortcut);
 		this.role = role;
@@ -78,23 +78,23 @@ public class Lemming extends GameObject {
 	}
 
 	public void walkOrFall() {
-		
-		 // Fall
-			if (this.isInAir()) {
-				this.fall();
+
+		// Fall
+		if (this.isInAir()) {
+			this.fall();
+			this.currentFall++;
+			this.wasFalling = true;
+		} else { // Walk
+			if (this.wasFalling) {
 				this.currentFall++;
-				this.wasFalling = true;
-			} else { // Walk
-				if (this.wasFalling) {
-					this.currentFall++;
-				}
-				if (this.surviveFall()) {
-					this.currentFall = 0;
-					this.walk();
-				} else
-					this.dies();
 			}
-		
+			if (this.surviveFall()) {
+				this.currentFall = 0;
+				this.walk();
+			} else
+				this.dies();
+		}
+
 	}
 
 	// Parachuter
@@ -106,8 +106,10 @@ public class Lemming extends GameObject {
 	@Override
 	public void update() {
 		if (isAlive()) {
-			if (this.game.receiveInteractionsFrom(this)) this.isInteracting = true;
-			else this.isInteracting = false;
+			if (this.game.receiveInteractionsFrom(this))
+				this.isInteracting = true;
+			else
+				this.isInteracting = false;
 			role.play(this);
 		}
 
@@ -143,10 +145,11 @@ public class Lemming extends GameObject {
 	public GameWorld getGame() {
 		return this.game;
 	}
-	
+
 	public boolean getIsInteracting() {
 		return this.isInteracting;
 	}
+
 	// GameItem methods
 	@Override
 	public boolean interactWith(Wall obj) {
@@ -160,11 +163,11 @@ public class Lemming extends GameObject {
 
 	@Override
 	public boolean interactWith(ExitDoor obj) {
-		if (obj.isInPosition(this.pos) ) {
+		if (obj.isInPosition(this.pos)) {
 			this.exitsDoor();
 			return true;
 		}
-		return  false;
+		return false;
 	}
 
 	// 3.0
@@ -228,8 +231,7 @@ public class Lemming extends GameObject {
 		str.append(this.role.toString());
 		return str.toString();
 	}
-	
-	
+
 	public void exitsDoor() {
 		this.setLife(false);
 		this.game.lemmingArrived();
