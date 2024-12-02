@@ -67,13 +67,12 @@ public class GameObjectContainer {
 	
 	//Interactions
 	public boolean receiveInteractionsFrom(GameItem obj) {
-		boolean received = false;
 		for (GameItem gi: objects) {
 			if (gi.receiveInteraction(obj)) {
-				received = true;
+				return true;
 			}
 		}
-		return received;
+		return false;
 	}
 		
 	//Getters
