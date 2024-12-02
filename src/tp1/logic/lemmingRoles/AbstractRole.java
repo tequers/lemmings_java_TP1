@@ -13,7 +13,7 @@ public abstract class AbstractRole implements LemmingRole {
 	private final String ICON;
 	private final String SYMBOL;
 	private final String HELP_NAME;
-	//
+	
 	public AbstractRole(String name, String help, 
 			String icon, String symbol, String help_name) {
 		this.NAME = name;

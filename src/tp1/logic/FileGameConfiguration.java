@@ -19,7 +19,7 @@ public class FileGameConfiguration implements GameConfiguration {
 	private int nLemmingsToWin;
 	private int nLemmingsInBoard;
 	private int nLemmingsDead;
-
+	
 	public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
 		
 		String line = null; 

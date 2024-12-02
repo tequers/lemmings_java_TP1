@@ -1,7 +1,7 @@
 package tp1.logic.lemmingRoles;
 
 import tp1.logic.Direction;
-import tp1.logic.gameobjects.ExitDoor;
+
 import tp1.logic.gameobjects.Lemming;
 import tp1.logic.gameobjects.Wall;
 import tp1.view.Messages;
@@ -14,36 +14,18 @@ public class DownCaverRole extends AbstractRole {
 	private static final String SYMBOL = Messages.DOWN_CAVER_ROL_SYMBOL;
 	private static final String HELP_NAME = Messages.DOWN_CAVER_ROL_HELP_NAME;
 
-	//private boolean hasCaved;
-
 	public DownCaverRole() {
 		super(NAME, HELP, ICON, SYMBOL, HELP_NAME);
 	}
 	
-	/*
-	public void cave(Lemming lemming) {
-		this.hasCaved = false;
-		if (lemming.getGame().receiveInteractionsFrom(lemming)) {
-			lemming.fall();
-			this.hasCaved = true;
-		}
-	}*/
-
 	// LemmingRole methods
 	@Override
 	public void start(Lemming lemming) {
-		//this.hasCaved = false;
-		//if (lemming.getIsInteracting()) lemming.disableRole();
-		//if (lemming.setRole(null))))
 	}
 
 	@Override
 	public void play(Lemming lemming) {
-		/*
-		this.cave(lemming);
-		if (!this.hasCaved)
-			lemming.disableRole();
-		*/
+	
 		if (lemming.getIsInteracting()) {
 			lemming.fall();
 		} else

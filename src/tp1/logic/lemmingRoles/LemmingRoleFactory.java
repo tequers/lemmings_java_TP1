@@ -20,8 +20,9 @@ public class LemmingRoleFactory {
 			if (rol.parse(input) != null) {
 				return rol;
 			}
+		
 		}
-		throw new RoleParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+		throw new RoleParseException(Messages.UNKNOWN_ROLE.formatted(input));
 	}
 
 	public static String helpText() {

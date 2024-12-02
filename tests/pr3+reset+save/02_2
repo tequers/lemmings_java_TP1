@@ -68,6 +68,8 @@ Command > [DEBUG] Executing: save patata
 
 File "patata" correctly saved
 
+Command > [DEBUG] Executing: n
+
 Number of cycles: 3
 Lemmings in board: 6
 Dead lemmings: 0
@@ -85,28 +87,6 @@ Lemmings exit door: 0 ┃2
   H┃                                                  ┃H
   I┃                                        ▓▓▓▓▓     ┃I
   J┃▓▓▓▓▓▓▓▓▓▓  B                           ▓▓▓▓▓▓▓▓▓▓┃J
-   └——————————————————————————————————————————————————┘
-      1    2    3    4    5    6    7    8    9   10  
-
-Command > [DEBUG] Executing: n
-
-Number of cycles: 4
-Lemmings in board: 5
-Dead lemmings: 1
-Lemmings exit door: 0 ┃2
-
-      1    2    3    4    5    6    7    8    9   10  
-   ┌——————————————————————————————————————————————————┐
-  A┃                                                  ┃A
-  B┃                                     ᗺ  ▓▓▓▓▓▓▓▓▓▓┃B
-  C┃                                                  ┃C
-  D┃                                                  ┃D
-  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  B   B🪂                ┃E
-  F┃               ▓▓▓▓▓ 🚪    B       ▓▓▓▓▓          ┃F
-  G┃               XXXXX▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓          ┃G
-  H┃                                                  ┃H
-  I┃                                        ▓▓▓▓▓     ┃I
-  J┃▓▓▓▓▓▓▓▓▓▓                              ▓▓▓▓▓▓▓▓▓▓┃J
    └——————————————————————————————————————————————————┘
       1    2    3    4    5    6    7    8    9   10  
 
@@ -134,38 +114,6 @@ Lemmings exit door: 0 ┃2
 
 Command > [DEBUG] Executing: load patata
 
-[ERROR] Error: Invalid file "patata" configuration
-
-[ERROR] Error: Invalid lemming role: "(2,6) Lemming RIGHT 0 tp1.logic.lemmingRoles.ParachuterRole@2e5d6d97"
-
-Command > [DEBUG] Executing: none
-
-Number of cycles: 1
-Lemmings in board: 6
-Dead lemmings: 0
-Lemmings exit door: 0 ┃2
-
-      1    2    3    4    5    6    7    8    9   10  
-   ┌——————————————————————————————————————————————————┐
-  A┃                                               ᗺ  ┃A
-  B┃                               B🪂      ▓▓▓▓▓▓▓▓▓▓┃B
-  C┃                                                  ┃C
-  D┃                 B    B                           ┃D
-  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                         ┃E
-  F┃               ▓▓▓▓▓ 🚪            ▓▓▓▓▓          ┃F
-  G┃               XXXXX▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓          ┃G
-  H┃                                                  ┃H
-  I┃       B                                ▓▓▓▓▓     ┃I
-  J┃▓▓▓▓▓▓▓▓▓▓                              ▓▓▓▓▓▓▓▓▓▓┃J
-   └——————————————————————————————————————————————————┘
-      1    2    3    4    5    6    7    8    9   10  
-
-Command > [DEBUG] Executing: setRole Parachuter A 5
-
-[ERROR] Error: No lemming in position (0,4) admits role Parachuter
-
-Command > [DEBUG] Executing: none
-
 Number of cycles: 2
 Lemmings in board: 6
 Dead lemmings: 0
@@ -173,7 +121,7 @@ Lemmings exit door: 0 ┃2
 
       1    2    3    4    5    6    7    8    9   10  
    ┌——————————————————————————————————————————————————┐
-  A┃                                          ᗺ       ┃A
+  A┃                                          B       ┃A
   B┃                                        ▓▓▓▓▓▓▓▓▓▓┃B
   C┃                               B🪂                ┃C
   D┃                      B    B                      ┃D
@@ -186,26 +134,76 @@ Lemmings exit door: 0 ┃2
    └——————————————————————————————————————————————————┘
       1    2    3    4    5    6    7    8    9   10  
 
-Command > [DEBUG] Executing: reset
+Command > [DEBUG] Executing: none
 
-Number of cycles: 0
+Number of cycles: 3
 Lemmings in board: 6
 Dead lemmings: 0
 Lemmings exit door: 0 ┃2
 
       1    2    3    4    5    6    7    8    9   10  
    ┌——————————————————————————————————————————————————┐
-  A┃                               B🪂             B  ┃A
+  A┃                                               B  ┃A
   B┃                                        ▓▓▓▓▓▓▓▓▓▓┃B
   C┃                                                  ┃C
-  D┃            B    B                                ┃D
-  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                         ┃E
+  D┃                           B   B🪂                ┃D
+  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  B                      ┃E
   F┃               ▓▓▓▓▓ 🚪            ▓▓▓▓▓          ┃F
   G┃               XXXXX▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓          ┃G
   H┃                                                  ┃H
-  I┃  B                                     ▓▓▓▓▓     ┃I
+  I┃                                        ▓▓▓▓▓     ┃I
+  J┃▓▓▓▓▓▓▓▓▓▓  B                           ▓▓▓▓▓▓▓▓▓▓┃J
+   └——————————————————————————————————————————————————┘
+      1    2    3    4    5    6    7    8    9   10  
+
+Command > [DEBUG] Executing: setRole Parachuter A 5
+
+[ERROR] Error: No lemming in position (0,4) admits role Parachuter
+
+Command > [DEBUG] Executing: none
+
+Number of cycles: 4
+Lemmings in board: 5
+Dead lemmings: 1
+Lemmings exit door: 0 ┃2
+
+      1    2    3    4    5    6    7    8    9   10  
+   ┌——————————————————————————————————————————————————┐
+  A┃                                               ᗺ  ┃A
+  B┃                                        ▓▓▓▓▓▓▓▓▓▓┃B
+  C┃                                                  ┃C
+  D┃                                                  ┃D
+  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  B   B🪂                ┃E
+  F┃               ▓▓▓▓▓ 🚪    B       ▓▓▓▓▓          ┃F
+  G┃               XXXXX▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓          ┃G
+  H┃                                                  ┃H
+  I┃                                        ▓▓▓▓▓     ┃I
   J┃▓▓▓▓▓▓▓▓▓▓                              ▓▓▓▓▓▓▓▓▓▓┃J
    └——————————————————————————————————————————————————┘
       1    2    3    4    5    6    7    8    9   10  
 
-Command > 
+Command > [DEBUG] Executing: reset
+
+Number of cycles: 2
+Lemmings in board: 6
+Dead lemmings: 0
+Lemmings exit door: 0 ┃2
+
+      1    2    3    4    5    6    7    8    9   10  
+   ┌——————————————————————————————————————————————————┐
+  A┃                                          B       ┃A
+  B┃                                        ▓▓▓▓▓▓▓▓▓▓┃B
+  C┃                               B🪂                ┃C
+  D┃                      B    B                      ┃D
+  E┃          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                         ┃E
+  F┃               ▓▓▓▓▓ 🚪            ▓▓▓▓▓          ┃F
+  G┃               XXXXX▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓          ┃G
+  H┃                                                  ┃H
+  I┃            B                           ▓▓▓▓▓     ┃I
+  J┃▓▓▓▓▓▓▓▓▓▓                              ▓▓▓▓▓▓▓▓▓▓┃J
+   └——————————————————————————————————————————————————┘
+      1    2    3    4    5    6    7    8    9   10  
+
+Command > [DEBUG] Executing: exit
+
+Player leaves the game

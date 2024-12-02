@@ -1,4 +1,0 @@
-load conf_0
-none
-reset
-exit

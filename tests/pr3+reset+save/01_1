@@ -30,7 +30,7 @@ Available commands:
    [n]one | "": user does not perform any action
    [r]eset [numLevel]: reset the game to initial configuration if not numLevel else load the numLevel map
    [l]oad <fileName>: load the game configuration from text file <fileName>
-   [s]ave <fileName>: save the current configuration to text file <fileName>
+   [s]ave <fileName>: save the actual configuration to text file <fileName>
    [h]elp: print this help message
    [e]xit: exits the game
 
@@ -44,7 +44,7 @@ Available commands:
    [n]one | "": user does not perform any action
    [r]eset [numLevel]: reset the game to initial configuration if not numLevel else load the numLevel map
    [l]oad <fileName>: load the game configuration from text file <fileName>
-   [s]ave <fileName>: save the current configuration to text file <fileName>
+   [s]ave <fileName>: save the actual configuration to text file <fileName>
    [h]elp: print this help message
    [e]xit: exits the game
 
@@ -202,7 +202,7 @@ Available commands:
    [n]one | "": user does not perform any action
    [r]eset [numLevel]: reset the game to initial configuration if not numLevel else load the numLevel map
    [l]oad <fileName>: load the game configuration from text file <fileName>
-   [s]ave <fileName>: save the current configuration to text file <fileName>
+   [s]ave <fileName>: save the actual configuration to text file <fileName>
    [h]elp: print this help message
    [e]xit: exits the game
 

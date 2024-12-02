@@ -1,10 +1,10 @@
 package tp1.control.commands;
 
 import tp1.exceptions.CommandExecuteException;
+
 import tp1.exceptions.CommandParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.exceptions.RoleParseException;
-import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.logic.Position;
 import tp1.logic.lemmingRoles.LemmingRole;
@@ -60,9 +60,11 @@ public class SetRoleCommand extends Command {
 				if (commandWords.length == 4) {
 					String row = commandWords[2];
 					if (row.length() == 1) {
+						
 						int col = Integer.valueOf(commandWords[3]);
 						this.pos = new Position(col - 1, letterToIndex(row.charAt(0)));
 						this.role = LemmingRoleFactory.parse(commandWords[1]); // Obtenemos el rol
+						
 						return this;
 					}
 					throw new CommandParseException(Messages.INVALID_POSITION
@@ -74,7 +76,7 @@ public class SetRoleCommand extends Command {
 			throw new CommandParseException(
 					Messages.INVALID_POSITION.formatted(Messages.POSITION.formatted(commandWords[2], commandWords[3])));
 		} catch (RoleParseException rpe) {
-			throw new CommandParseException(Messages.UNKNOWN_ROLE.formatted(commandWords[1], rpe));
+			throw new CommandParseException(Messages.INVALID_COMMAND_PARAMETERS, rpe);
 		}
 
 		return null;

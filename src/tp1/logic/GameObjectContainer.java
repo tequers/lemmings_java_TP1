@@ -34,7 +34,7 @@ public class GameObjectContainer {
 			o.update();
 		}
 		//Eliminar los elementos del array que correspondan
-		for (int i = 0; i < objects.size();++i) {
+		for (int i = objects.size()-1; i >= 0;i--) {
 		    if (!objects.get(i).isAlive()) {
 		    	this.cont--;
 		    	objects.remove(i);
@@ -117,10 +117,12 @@ public class GameObjectContainer {
 	public GameObjectContainer copy() {
 		GameObjectContainer goc = new GameObjectContainer();
 		goc.setlemmingsInBoard(nLemmingsInBoard);
-		goc.setCont(this.cont);
+		int cont = 0;
 		for (GameObject go: objects) {
 			goc.add(go);
+			cont++;
 		}
+		goc.setCont(cont);
 		return goc;
 	}
 }

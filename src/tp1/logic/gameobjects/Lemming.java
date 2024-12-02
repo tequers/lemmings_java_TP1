@@ -54,7 +54,6 @@ public class Lemming extends GameObject {
 			this.pos = nextPos;
 		} else
 			this.dies();
-
 	}
 
 	public boolean isInAir() {
@@ -96,7 +95,12 @@ public class Lemming extends GameObject {
 		}
 
 	}
+	
 
+	public void exitsDoor() {
+		this.setLife(false);
+		this.game.lemmingArrived();
+	}
 	// Parachuter
 	public void setCurrentFall(int n) {
 		this.currentFall = n;
@@ -232,8 +236,4 @@ public class Lemming extends GameObject {
 		return str.toString();
 	}
 
-	public void exitsDoor() {
-		this.setLife(false);
-		this.game.lemmingArrived();
-	}
 }

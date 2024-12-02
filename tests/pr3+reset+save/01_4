@@ -26,6 +26,8 @@ Command > [DEBUG] Executing: setRole Walker I 2 33
 
 Command > [DEBUG] Executing: setRole Patata I 2
 
+[ERROR] Error: Invalid command parameters
+
 [ERROR] Error: Unknown role: Patata
 
 Command > [DEBUG] Executing: sEtROle Walker I 1
@@ -44,9 +46,11 @@ Command > [DEBUG] Executing: setRole Parachuter A 100
 
 [ERROR] Error: Command execute problem
 
-[ERROR] Error: Position (0,99) off the board
+[ERROR] Error: Position (0,99) is off board
 
 Command > [DEBUG] Executing: setRole Parachu A 10
+
+[ERROR] Error: Invalid command parameters
 
 [ERROR] Error: Unknown role: Parachu
 
