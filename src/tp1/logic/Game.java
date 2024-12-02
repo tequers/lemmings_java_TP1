@@ -267,7 +267,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		} catch (IOException e) {
 			throw new GameModelException(); 
 		}
-
 	}
 
 }

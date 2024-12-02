@@ -11,8 +11,11 @@ import tp1.view.Messages;
 
 public class GameObjectFactory {
 
-	private static final List<GameObject> availableGameObjects = Arrays.asList(new Wall(null, null),
-			new MetalWall(null, null), new Lemming(null, null, null), new ExitDoor(null, null)
+	private static final List<GameObject> availableGameObjects = Arrays.asList(
+			new Wall(null, null),
+			new MetalWall(null, null),
+			new Lemming(null, null, null),
+			new ExitDoor(null, null)
 
 	);
 
