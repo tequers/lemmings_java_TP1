@@ -22,7 +22,7 @@ public class ResetCommand extends Command {
 	@Override
 	public void execute(GameModel game, GameView view) throws CommandExecuteException {
 		try {
-			if (this.nLevel == null) {
+			/*if (this.nLevel == null) {
 				game.reset(game.getLevel());
 				view.showGame();
 				
@@ -30,7 +30,16 @@ public class ResetCommand extends Command {
 				game.reset(Integer.valueOf(this.nLevel));
 				view.showGame();
 			} else
+				view.showError(Messages.INVALID_LEVEL_NUMBER);*/
+			if (this.nLevel == null) {
+				game.reset();
+				
+			} else if (game.isLevelValid(Integer.valueOf(this.nLevel))) {
+				game.reset(Integer.valueOf(this.nLevel));
+				view.showGame();
+			} else
 				view.showError(Messages.INVALID_LEVEL_NUMBER);
+			
 
 		} catch (GameLoadException gle) {
 			throw new CommandExecuteException();
@@ -43,6 +52,7 @@ public class ResetCommand extends Command {
 			if (commandWords.length == 2 || commandWords.length == 1) {
 				if (commandWords.length == 2)
 					this.nLevel = commandWords[1];
+				else this.nLevel = null;
 				
 				return this;
 			}

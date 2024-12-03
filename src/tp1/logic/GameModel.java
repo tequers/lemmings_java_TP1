@@ -8,7 +8,8 @@ import tp1.logic.lemmingRoles.LemmingRole;
 public interface GameModel {
 	
 	public void update();
-	public void reset(int nLevel) throws GameLoadException;;
+	public void reset(int nLevel) throws GameLoadException;
+	public void reset() throws GameLoadException;
 	public void exit();
 	public void load(String fileName) throws GameLoadException;
 	public void save(String fileName) throws GameModelException;

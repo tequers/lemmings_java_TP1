@@ -119,7 +119,8 @@ public class GameObjectContainer {
 		goc.setlemmingsInBoard(nLemmingsInBoard);
 		int cont = 0;
 		for (GameObject go: objects) {
-			goc.add(go);
+			
+			goc.add(go); //TODO: Hacer copia de los objetos
 			cont++;
 		}
 		goc.setCont(cont);

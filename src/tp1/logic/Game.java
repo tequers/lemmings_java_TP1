@@ -43,8 +43,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	}
 
-//load 
-
 
 	public void load(String fileName) throws GameLoadException {
 		FileGameConfiguration fnc = new FileGameConfiguration(fileName, this);
@@ -112,12 +110,19 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset(int nLevel) throws GameLoadException {
+		
+		init(nLevel);
+	}
+	
+	@Override
+	public void reset() throws GameLoadException {
+		
 		try {
+			
 			this.load(this.nameConfig);
 		} catch (NullPointerException npe) {
 			init(nLevel);
 		}
-
 	}
 
 	@Override

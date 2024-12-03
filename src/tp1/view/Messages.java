@@ -134,7 +134,7 @@ public class Messages {
 	public static final String COMMAND_SAVE_COMMAND_NAME = "save";
 	public static final String COMMAND_SAVE_COMMAND_SHORTCUT = "s";
 	public static final String COMMAND_SAVE_COMMAND_DETAILS = "[s]ave <fileName>";
-	public static final String COMMAND_SAVE_COMMAND_HELP = "save the actual configuration to text file <fileName>";
+	public static final String COMMAND_SAVE_COMMAND_HELP = "save the actual configuration in text file <fileName>";
 
 	//Roles
 	public static final String WALKER_ROL_SYMBOL = "W";
@@ -177,6 +177,6 @@ public class Messages {
 	
 //3.0 
 	public static final String POSITION_IS_OFF_BOARD = "Position (%s,%s) is off board";
-	public static final String FILE_SAVED = "File \"%s\" correctly saved%n";
+	public static final String FILE_SAVED = "  File \"%s\" correctly saved%n";
 	public static final String INVALID_LEMMING_POSITION =  "No lemming in position (%s,%s) admits role %s";
 } 
