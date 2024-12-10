@@ -29,12 +29,15 @@ public class FileGameConfiguration implements GameConfiguration {
 			String[] words = line.trim().split("\\s+");
 
 			if (words.length == 5) {
+				//try {
 				this.nCycle = Integer.valueOf(words[0]);
 				this.nLemmingsInBoard = Integer.valueOf(words[1]);
 				this.nLemmingsDead = Integer.valueOf(words[2]);
 				this.nLemmingsExit = Integer.valueOf(words[3]);
 				this.nLemmingsToWin = Integer.valueOf(words[4]);
-
+				//} catch (NumberFormatException e) {
+			//		throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(line));
+				//}
 				GameObjectContainer goc = new GameObjectContainer();
 				while ((line = inChars.readLine()) != null) {
 					GameObject gObj = GameObjectFactory.parse(line, game);

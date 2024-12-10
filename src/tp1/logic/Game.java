@@ -35,7 +35,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	private boolean fin;
 	private String nameConfig;
-
+	
+	FileGameConfiguration fgc = null; //FileGameConfiguration.NONE;
 	public Game(int nLevel) {
 		this.nLevel = nLevel;
 		init(nLevel);
@@ -45,7 +46,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 
 	public void load(String fileName) throws GameLoadException {
-		FileGameConfiguration fnc = new FileGameConfiguration(fileName, this);
+		FileGameConfiguration fnc;
+		if (this.fgc == null) {
+			fnc = new FileGameConfiguration(fileName, this);
+			this.fgc = fnc;
+		} else 
+			fnc = this.fgc;
+	
 		this.nCycle = fnc.getCycle();
 		this.nLemmingsExit = fnc.numLemingsExit();
 		this.nLemmingsToWin = fnc.numLemmingToWin();
