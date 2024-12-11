@@ -38,15 +38,12 @@ public class ExitDoor extends GameObject {
 	}
 
 	@Override
-	public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException {
-
-		String[] words = line.trim().split("\\s+");
-		Position pos = super.checkPositionFrom(words[0], line);
-		if (super.checkObjectNameFrom(words[1])) {
-			return new ExitDoor(game, pos);
-		}
-
-		return null;
-
+	public GameObject copy() {
+		return new ExitDoor(game, pos);
+	}
+	
+	@Override
+	public GameObject copy(GameWorld game, Position pos) {
+		return new ExitDoor(game, pos);
 	}
 }

@@ -20,6 +20,10 @@ public class FileGameConfiguration implements GameConfiguration {
 	private int nLemmingsInBoard;
 	private int nLemmingsDead;
 	
+	//public static final GameConfiguration NONE = new FileGameConfiguration();
+	public static final GameConfiguration NONE = null;
+	//public FileGameConfiguration() {}
+	
 	public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
 		
 		String line = null; 
@@ -29,17 +33,14 @@ public class FileGameConfiguration implements GameConfiguration {
 			String[] words = line.trim().split("\\s+");
 
 			if (words.length == 5) {
-				//try {
 				this.nCycle = Integer.valueOf(words[0]);
 				this.nLemmingsInBoard = Integer.valueOf(words[1]);
 				this.nLemmingsDead = Integer.valueOf(words[2]);
 				this.nLemmingsExit = Integer.valueOf(words[3]);
 				this.nLemmingsToWin = Integer.valueOf(words[4]);
-				//} catch (NumberFormatException e) {
-			//		throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(line));
-				//}
+
 				GameObjectContainer goc = new GameObjectContainer();
-				while ((line = inChars.readLine()) != null) {
+				while ((line = inChars.readLine()) != null) { //TODO: COMprobar que son vacías
 					GameObject gObj = GameObjectFactory.parse(line, game);
 					goc.add(gObj);
 				}
@@ -53,7 +54,7 @@ public class FileGameConfiguration implements GameConfiguration {
 		} catch (OffBoardException obe) {
 			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); 
 		} catch (IOException e) {
-			throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
+			throw new GameLoadException(Messages.READ_ERROR.formatted(fileName));
 		}
 
 	}

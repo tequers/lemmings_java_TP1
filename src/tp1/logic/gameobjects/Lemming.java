@@ -178,13 +178,14 @@ public class Lemming extends GameObject {
 	@Override
 	public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException {
 		String[] words = line.trim().split("\\s+");
-		Position pos = super.checkPositionFrom(words[0], line);
+
+		Lemming lemming = (Lemming) super.parse(line, game);
 		if (super.checkObjectNameFrom(words[1])) {
 
 			Direction dir = Lemming.getLemmingDirectionFrom(words[2], line);
 			int height = Lemming.getLemmingHeigthFrom(words[3], line);
 			try {
-				Lemming lemming = new Lemming(game, pos, LemmingRoleFactory.parse(words[4]));
+				lemming.setRole(LemmingRoleFactory.parse(words[4]));
 				lemming.setDir(dir);
 				lemming.setCurrentFall(height);
 				return lemming;
@@ -235,5 +236,14 @@ public class Lemming extends GameObject {
 		str.append(this.role.toString());
 		return str.toString();
 	}
-
+	
+	@Override
+	public GameObject copy() {
+		return new Lemming(game, pos, role);
+	}
+	
+	@Override
+	public  GameObject copy(GameWorld game, Position pos) {
+		return new Lemming(game, pos, null);
+	}
 }

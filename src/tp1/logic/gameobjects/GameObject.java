@@ -72,7 +72,16 @@ public abstract class GameObject implements GameItem {
 	}
 
 	// 3.0
-	public abstract GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException;
+	public GameObject parse(String line, GameWorld game) throws ObjectParseException, OffBoardException {
+
+		String[] words = line.trim().split("\\s+");
+		Position pos = checkPositionFrom(words[0], line);
+		if (checkObjectNameFrom(words[1])) {
+			return this.copy(game, pos);
+		}
+
+		return null;
+	}
 
 	public static Position checkPositionFrom(String pos, String line) throws ObjectParseException, OffBoardException {
 		String[] p = pos.replace("(", "").replace(")", "").split(",");
@@ -107,5 +116,7 @@ public abstract class GameObject implements GameItem {
 		str.append(this.name);
 		return str.toString();
 	}
-
+	
+	public abstract GameObject copy();
+	public abstract GameObject copy(GameWorld game, Position pos);
 }

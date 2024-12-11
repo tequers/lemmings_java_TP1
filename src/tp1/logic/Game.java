@@ -36,7 +36,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private boolean fin;
 	private String nameConfig;
 	
-	FileGameConfiguration fgc = null; //FileGameConfiguration.NONE;
+	//FileGameConfiguration fgc = null; //FileGameConfiguration.NONE;
+	
+	private GameConfiguration conf;
+	
 	public Game(int nLevel) {
 		this.nLevel = nLevel;
 		init(nLevel);
@@ -46,20 +49,20 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 
 	public void load(String fileName) throws GameLoadException {
-		FileGameConfiguration fnc;
-		if (this.fgc == null) {
-			fnc = new FileGameConfiguration(fileName, this);
-			this.fgc = fnc;
-		} else 
-			fnc = this.fgc;
 	
+		GameConfiguration fnc = new FileGameConfiguration(fileName, this);
+		this.init(fnc);
+		this.conf = fnc;
+	}
+	
+	public void init(GameConfiguration fnc) {
 		this.nCycle = fnc.getCycle();
 		this.nLemmingsExit = fnc.numLemingsExit();
 		this.nLemmingsToWin = fnc.numLemmingToWin();
 		this.nLemmingsInBoard = fnc.numLemmingsInBoard();
 		this.nLemmingsDead = fnc.numLemmingsDead();
 		this.container = fnc.getGameObjects();
-		this.nameConfig = fileName;
+		this.conf = fnc;
 	}
 
 // GameStatus methods
@@ -117,18 +120,19 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset(int nLevel) throws GameLoadException {
-		
 		init(nLevel);
 	}
-	
+
 	@Override
 	public void reset() throws GameLoadException {
-		
-		try {
-			
-			this.load(this.nameConfig);
-		} catch (NullPointerException npe) {
+
+		if (conf == FileGameConfiguration.NONE) {
+			// inicialización estándar
 			init(nLevel);
+
+		} else {
+			// inicialización usando conf
+			this.init(conf);
 		}
 	}
 

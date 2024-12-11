@@ -120,7 +120,7 @@ public class GameObjectContainer {
 		int cont = 0;
 		for (GameObject go: objects) {
 			
-			goc.add(go); //TODO: Hacer copia de los objetos
+			goc.add(go.copy()); 
 			cont++;
 		}
 		goc.setCont(cont);

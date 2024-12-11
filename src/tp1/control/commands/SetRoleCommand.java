@@ -82,7 +82,7 @@ public class SetRoleCommand extends Command {
 		return null;
 	}
 
-	private int letterToIndex(char letter) {
+	private static int letterToIndex(char letter) {
 		return letter - 'A'; // A -> 0, B -> 1 ...
 	}
 

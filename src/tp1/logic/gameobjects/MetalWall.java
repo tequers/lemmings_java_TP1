@@ -50,5 +50,15 @@ public class MetalWall extends GameObject {
 		return null;
 
 	}
-
+	
+	@Override
+	public GameObject copy() {
+		return new MetalWall(game, pos);
+	}
+	
+	@Override
+	public GameObject copy(GameWorld game, Position pos) {
+		return new Wall(game, pos);
+	}
+	
 }
