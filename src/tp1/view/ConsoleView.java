@@ -149,7 +149,7 @@ public class ConsoleView extends GameView {
 
 	@Override
 	public void showError(String message) {
-        System.out.println(Messages.ERROR.formatted(message));		
+        System.out.print(Messages.ERROR.formatted(message));		
 	}
 	
 	@Override

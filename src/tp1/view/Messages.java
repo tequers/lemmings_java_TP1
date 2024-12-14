@@ -32,7 +32,7 @@ public class Messages {
 	public static final String GAME_OVER = "Game over";
 	public static final String PLAYER_QUITS = "Player leaves the game";
 	public static final String PLAYER_WINS = "Player wins!";
-	public static final String PLAYER_LOOSES = "Player loses...";
+	public static final String PLAYER_LOOSES = "Player lose...";
 
 	// Position format
 	public static final String POSITION = "(%s,%s)";
@@ -177,6 +177,6 @@ public class Messages {
 	
 //3.0 
 	public static final String POSITION_IS_OFF_BOARD = "Position (%s,%s) is off board";
-	public static final String FILE_SAVED = "  File \"%s\" correctly saved%n";
+	public static final String FILE_SAVED = "   File \"%s\" correctly saved%n";
 	public static final String INVALID_LEMMING_POSITION =  "No lemming in position (%s,%s) admits role %s";
 } 

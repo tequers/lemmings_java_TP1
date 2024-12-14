@@ -20,9 +20,7 @@ public class FileGameConfiguration implements GameConfiguration {
 	private int nLemmingsInBoard;
 	private int nLemmingsDead;
 	
-	//public static final GameConfiguration NONE = new FileGameConfiguration();
 	public static final GameConfiguration NONE = null;
-	//public FileGameConfiguration() {}
 	
 	public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
 		
@@ -54,7 +52,7 @@ public class FileGameConfiguration implements GameConfiguration {
 		} catch (OffBoardException obe) {
 			throw new GameLoadException(Messages.OFF_BOARD_POSITION.formatted(line)); 
 		} catch (IOException e) {
-			throw new GameLoadException(Messages.READ_ERROR.formatted(fileName));
+			throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
 		}
 
 	}

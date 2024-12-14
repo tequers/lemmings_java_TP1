@@ -34,9 +34,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private int nLevel;
 
 	private boolean fin;
-	private String nameConfig;
-	
-	//FileGameConfiguration fgc = null; //FileGameConfiguration.NONE;
 	
 	private GameConfiguration conf;
 	
