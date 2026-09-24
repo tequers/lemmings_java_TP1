@@ -203,7 +203,7 @@ public class Lemming extends GameObject {
 		case ("RIGHT"):
 			return Direction.RIGHT;
 		case ("LEFT"):
-			return Direction.RIGHT;
+			return Direction.LEFT;
 		case ("UP"):
 		case ("DOWN"):
 			throw new ObjectParseException(Messages.INVALID_LEMMING_DIRECTION.formatted(line));
@@ -239,7 +239,10 @@ public class Lemming extends GameObject {
 	
 	@Override
 	public GameObject copy() {
-		return new Lemming(game, pos, role);
+		Lemming l = new Lemming(game, pos, role);
+		l.dir = this.dir;
+		l.currentFall = this.currentFall;
+		return l;
 	}
 	
 	@Override

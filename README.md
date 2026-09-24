@@ -229,19 +229,18 @@ Running all ten fixtures in `tests/pr3+reset+save/` against the current code:
 | `01_6-file_errors` | 92 | 9 |
 | `01_7-file_reset` | 91 | 0 |
 | `02_1-newRoles` | 246 | 7 |
-| `02_2-reset_load_save` | 209 | 6 |
-| **Total** | **2791** | **49** |
+| `02_2-reset_load_save` | 209 | 1 |
+| **Total** | **2791** | **44** |
 
-The comparison demands exact equality, so those 49 lines mean the suite reports failures. They fall into four groups:
+The comparison demands exact equality, so those 44 lines mean the suite reports failures. They fall into three groups:
 
 | Cause | Lines |
 | --- | --- |
 | A blank line the reference prints after an error message | 29 |
 | Help text indented with a tab where the reference uses spaces | 9 |
 | The exit door drawn before a lemming standing on it, not after | 6 |
-| A lemming's direction lost when a game is loaded | 5 |
 
-The first three are formatting. Board states, positions, cycle counts, death counts and exit counts all match. The fourth is a real bug, and it is described below.
+All three are formatting. Board states, positions, cycle counts, death counts and exit counts all match. The course staff reviewed these differences at the time and accepted them as display issues.
 
 Reproduce the table with:
 
@@ -256,16 +255,9 @@ done
 
 ## Honest notes
 
-This is coursework from late 2024, kept as submitted. What follows is what I would change.
+This is coursework from late 2024. The code is as submitted, apart from one bug fix described below. What follows is what I would still change.
 
-**Loading a game forgets which way a lemming was walking.** `Lemming.getLemmingDirectionFrom` maps both direction names to the same value:
-
-```java
-case ("RIGHT"): return Direction.RIGHT;
-case ("LEFT"):  return Direction.RIGHT;   // should be Direction.LEFT
-```
-
-The save side is correct and writes `LEFT` faithfully. Every lemming simply comes back walking right, and the positions diverge over the cycles that follow. This is the whole of the fourth group in the table above, and it is one character.
+**Fixed after submission: loading a game forgot which way a lemming was walking.** A saved game wrote each lemming's direction correctly, but a loaded lemming always faced right. Two bugs in `Lemming` caused this, and both had to be fixed before the round trip worked. `getLemmingDirectionFrom` mapped `"LEFT"` to `Direction.RIGHT`. Also, `copy()` built the new lemming with the constructor, which sets the direction to `RIGHT` and the fall height to `0`. A loaded game is copied into play, so the copy reset the direction even after it was parsed correctly. `copy()` now carries both fields over. This took the save-and-load fixture from 6 differing lines to 1, and the remaining line is a missing blank line.
 
 **A failed save tells you nothing.** `SaveCommand` catches `GameModelException` and throws `new CommandExecuteException()` with no message and no cause, so the player sees `[ERROR] Error: null`. The load path carries a formatted message and its cause all the way to the user. Save and reset both discard theirs. The mechanism is right and two call sites do not use it.
 
