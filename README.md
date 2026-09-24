@@ -255,7 +255,7 @@ done
 
 ## Honest notes
 
-This is coursework from late 2024. The code is as submitted, apart from one bug fix described below. What follows is what I would still change.
+This is coursework from late 2024. The code is as submitted, apart from one bug fix described here.
 
 **Fixed after submission: loading a game forgot which way a lemming was walking.** A saved game wrote each lemming's direction correctly, but a loaded lemming always faced right. Two bugs in `Lemming` caused this, and both had to be fixed before the round trip worked. `getLemmingDirectionFrom` mapped `"LEFT"` to `Direction.RIGHT`. Also, `copy()` built the new lemming with the constructor, which sets the direction to `RIGHT` and the fall height to `0`. A loaded game is copied into play, so the copy reset the direction even after it was parsed correctly. `copy()` now carries both fields over. This took the save-and-load fixture from 6 differing lines to 1, and the remaining line is a missing blank line.
 
