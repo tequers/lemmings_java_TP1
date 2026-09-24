@@ -1,4 +1,4 @@
-*Claude was only used for the assisted generation of the README everything else of the assignment was done by Alberto Antequera and Jose Baute*
+*Claude was only used for the assisted generation of the README everything else of the assignment was done by Alberto Antequera and Jose Baute, the original Assignment's Readmes can be found on the /docs folder*
 # Lemmings
 
 A console version of the 1991 puzzle game, written in Java. Lemmings walk across a 10x10 board on their own. You cannot steer them directly. You change what they _are_: give one a parachute before it falls to its death, or turn another into a digger to open a floor. Get enough of them to the exit door and you win.
