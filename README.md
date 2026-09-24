@@ -1,6 +1,6 @@
 # Lemmings
 
-A console version of the 1991 puzzle game, written in Java. Lemmings walk across a 10x10 board on their own. You cannot steer them directly. You change what they *are*: give one a parachute before it falls to its death, or turn another into a digger to open a floor. Get enough of them to the exit door and you win.
+A console version of the 1991 puzzle game, written in Java. Lemmings walk across a 10x10 board on their own. You cannot steer them directly. You change what they _are_: give one a parachute before it falls to its death, or turn another into a digger to open a floor. Get enough of them to the exit door and you win.
 
 The game grew over three university assignments, and two constraints shaped the code more than the game did. The first was a ban: `instanceof` and `getClass()` were forbidden outright, and using either meant an automatic fail. Objects here have to work out who they are talking to without ever asking. The second arrived with the third assignment, which required saving a game to a file and loading it back, so every error had to become a typed exception carrying enough detail to tell the player what was wrong with their file.
 
@@ -47,27 +47,27 @@ On Windows, keep `-Dstdout.encoding=UTF-8`. Without it the console codepage mang
 
 ## Play it
 
-| Command | Shortcut | Effect |
-| --- | --- | --- |
-| `setRole ROLE ROW COL` | `sr` | Give the lemming at that cell a role. Example: `sr Parachuter A 8` |
-| `none` | `n`, or press return | Advance one cycle without acting |
-| `reset [level]` | `r` | Restart, optionally on a different level |
-| `load FILE` | `l` | Replace the current game with one read from a file |
-| `save FILE` | `s` | Write the current game to a file |
-| `help` | `h` | List the commands |
-| `exit` | `e` | Quit |
+| Command                | Shortcut             | Effect                                                             |
+| ---------------------- | -------------------- | ------------------------------------------------------------------ |
+| `setRole ROLE ROW COL` | `sr`                 | Give the lemming at that cell a role. Example: `sr Parachuter A 8` |
+| `none`                 | `n`, or press return | Advance one cycle without acting                                   |
+| `reset [level]`        | `r`                  | Restart, optionally on a different level                           |
+| `load FILE`            | `l`                  | Replace the current game with one read from a file                 |
+| `save FILE`            | `s`                  | Write the current game to a file                                   |
+| `help`                 | `h`                  | List the commands                                                  |
+| `exit`                 | `e`                  | Quit                                                               |
 
 Rows are letters `A` to `J`, columns are numbers `1` to `10`, and `ConsoleView` translates from the zero-based coordinates used internally.
 
-| Symbol | Meaning |
-| --- | --- |
-| `B` | Lemming walking right |
-| `ᗺ` | Lemming walking left |
-| 🪂 | Lemming with the parachuter role |
-| ``´･ω･` `` | Lemming with the downcaver role |
-| `▓▓▓▓▓` | Wall. A downcaver can dig through it |
-| `XXXXX` | Metal wall. Nothing gets through it |
-| 🚪 | Exit door |
+| Symbol     | Meaning                              |
+| ---------- | ------------------------------------ |
+| `B`        | Lemming walking right                |
+| `ᗺ`        | Lemming walking left                 |
+| 🪂         | Lemming with the parachuter role     |
+| ``´･ω･` `` | Lemming with the downcaver role      |
+| `▓▓▓▓▓`    | Wall. A downcaver can dig through it |
+| `XXXXX`    | Metal wall. Nothing gets through it  |
+| 🚪         | Exit door                            |
 
 A lemming walks one cell per cycle. It turns around at a wall or a board edge, and it falls when nothing solid is under it. Falling is what kills them: a lemming that lands after dropping three rows or more dies on impact, and so does one that falls off the bottom of the board. You win when no lemmings are left on the board and at least the level's quota reached the door.
 
@@ -105,11 +105,11 @@ src/tp1/
 
 `Game` implements three interfaces at once, and each collaborator sees only the slice it needs.
 
-| Interface | Used by | Exposes |
-| --- | --- | --- |
-| `GameStatus` | The view | Cycle count, lemming counts, `positionToString` |
-| `GameModel` | Commands | `update`, `reset`, `exit`, `setRole`, `load`, `save` |
-| `GameWorld` | Game objects | `isSolid`, `isInAir`, `lemmingArrived`, `addDeadLemming` |
+| Interface    | Used by      | Exposes                                                  |
+| ------------ | ------------ | -------------------------------------------------------- |
+| `GameStatus` | The view     | Cycle count, lemming counts, `positionToString`          |
+| `GameModel`  | Commands     | `update`, `reset`, `exit`, `setRole`, `load`, `save`     |
+| `GameWorld`  | Game objects | `isSolid`, `isInAir`, `lemmingArrived`, `addDeadLemming` |
 
 A `Lemming` holds a `GameWorld` reference and nothing else. It cannot reach `Game`, cannot reach the container, and cannot see the other objects on the board. It asks questions about the world and reports what happened to it. That is the whole of its access.
 
@@ -218,27 +218,27 @@ The tests are golden-file snapshots. `Tests.java` redirects `System.in` and `Sys
 
 Running all ten fixtures in `tests/pr3+reset+save/` against the current code:
 
-| Fixture | Expected lines | Differing |
-| --- | --- | --- |
-| `00_1-play` | 243 | 1 |
-| `01_1-command` | 365 | 12 |
-| `01_2-play` | 243 | 1 |
-| `01_3-newRoles` | 551 | 2 |
-| `01_4-newRoles_errors` | 280 | 9 |
-| `01_5-newRoles_conf_0` | 471 | 2 |
-| `01_6-file_errors` | 92 | 9 |
-| `01_7-file_reset` | 91 | 0 |
-| `02_1-newRoles` | 246 | 7 |
-| `02_2-reset_load_save` | 209 | 1 |
-| **Total** | **2791** | **44** |
+| Fixture                | Expected lines | Differing |
+| ---------------------- | -------------- | --------- |
+| `00_1-play`            | 243            | 1         |
+| `01_1-command`         | 365            | 12        |
+| `01_2-play`            | 243            | 1         |
+| `01_3-newRoles`        | 551            | 2         |
+| `01_4-newRoles_errors` | 280            | 9         |
+| `01_5-newRoles_conf_0` | 471            | 2         |
+| `01_6-file_errors`     | 92             | 9         |
+| `01_7-file_reset`      | 91             | 0         |
+| `02_1-newRoles`        | 246            | 7         |
+| `02_2-reset_load_save` | 209            | 1         |
+| **Total**              | **2791**       | **44**    |
 
 The comparison demands exact equality, so those 44 lines mean the suite reports failures. They fall into three groups:
 
-| Cause | Lines |
-| --- | --- |
-| A blank line the reference prints after an error message | 29 |
-| Help text indented with a tab where the reference uses spaces | 9 |
-| The exit door drawn before a lemming standing on it, not after | 6 |
+| Cause                                                          | Lines |
+| -------------------------------------------------------------- | ----- |
+| A blank line the reference prints after an error message       | 29    |
+| Help text indented with a tab where the reference uses spaces  | 9     |
+| The exit door drawn before a lemming standing on it, not after | 6     |
 
 All three are formatting. Board states, positions, cycle counts, death counts and exit counts all match. The course staff reviewed these differences at the time and accepted them as display issues.
 
@@ -258,18 +258,6 @@ done
 This is coursework from late 2024. The code is as submitted, apart from one bug fix described below. What follows is what I would still change.
 
 **Fixed after submission: loading a game forgot which way a lemming was walking.** A saved game wrote each lemming's direction correctly, but a loaded lemming always faced right. Two bugs in `Lemming` caused this, and both had to be fixed before the round trip worked. `getLemmingDirectionFrom` mapped `"LEFT"` to `Direction.RIGHT`. Also, `copy()` built the new lemming with the constructor, which sets the direction to `RIGHT` and the fall height to `0`. A loaded game is copied into play, so the copy reset the direction even after it was parsed correctly. `copy()` now carries both fields over. This took the save-and-load fixture from 6 differing lines to 1, and the remaining line is a missing blank line.
-
-**A failed save tells you nothing.** `SaveCommand` catches `GameModelException` and throws `new CommandExecuteException()` with no message and no cause, so the player sees `[ERROR] Error: null`. The load path carries a formatted message and its cause all the way to the user. Save and reset both discard theirs. The mechanism is right and two call sites do not use it.
-
-**`MetalWall.copy(GameWorld, Position)` returns a `new Wall`**, which would silently turn metal into something diggable. It never fires, because `MetalWall` also overrides `parse` and constructs itself directly, duplicating the inherited method body rather than calling `copy`. Dead code covering a bug is worse than either alone.
-
-**`AbstractRole.equals` uses `getClass()`** to decide whether two roles are the same type. It is the idiomatic place for it, and it is also the one spot in the codebase that answers the question the assignment banned.
-
-**`GameConfiguration` declares `numLemingsExit` and `numLemmingToWin`**, each missing a letter, while its sibling `GameStatus` spells both correctly. It compiles because each implementer follows its own interface.
-
-**`reset` declares `throws GameLoadException` but never throws it.** The signature exists to satisfy an interface shaped by the file-loading feature.
-
-Two more things about the repository rather than the code. The file named `patata` at the root is a saved game left over from testing, not content. And `Tests.java` uses reflection to check whether `SaveCommand` exists and what `ResetCommand` extends, then picks one of three fixture directories accordingly. That is shared course grading infrastructure built to run against many students' submissions, not test design of ours.
 
 ## Built by
 
